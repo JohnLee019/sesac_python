@@ -3,18 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>포토 캘린더</title>
-</head>
-<body>
-    <center>
-    <h1>Photo Calender</h1>
-    <h2>2025년 6월</h2>
-    </center>
-    <center>
-    <img src="image/scene6.jpg" alt="풍경 사진" width="35%">
-    </center>
-    <a href="6.5 calender.html" class="position1">previous</a>
-    <a href="6.7 calender.html" class="position2">next</a>
-
     <style>
     .position1 {
         position: fixed;
@@ -22,6 +10,8 @@
         left: 0;
         padding: 10px;
         font-size: 16px;
+        text-decoration: none;
+        color: black;
     }
     .position2 {
         position: fixed;
@@ -29,70 +19,98 @@
         right: 0;
         padding: 10px;
         font-size: 16px;
+        text-decoration: none;
+        color: black;
     }
     .tableFix {
         border-collapse: collapse; 
         width: 100%;
+        margin-top: 20px;
     }
     th, td {
         border: 1px solid black;
         text-align: center;
         padding: 12px;
         width: 14%;
+        border: 1px solid #ccc;
     }
-    .blue {
-        color: blue;
+    th {
+        background-color: #f2f2f2;
+    }
+    .tableFix td:nth-child(1),
+    .tableFix td:nth-child(7),
+    .tableFix th:nth-child(1),
+    .tableFix th:nth-child(7){
+    color:blue;
+    }
+    .image {
+        width: 80%;
+        max-width: 400px;  
+        height: auto;
+        display: block;
+        margin: 0 auto;
     }
     </style>
+</head>
+<body>
+    <center>
+    <h1>Photo Calender</h1>
+    <h2>2025년 6월</h2>
+    </center>
+    <center>
+    <img src="image/scene6.jpg" alt="풍경 사진" class="image">
+    </center>
+    <a href="6.5 calender.html" class="position1">&larr;previous</a>
+    <a href="6.7 calender.html" class="position2">next&rarr;</a>
 
     <table class="tableFix">
         <tr>
-            <th class="blue">Sun</th> <!-- table header: center + bold -->
+            <th>Sun</th> <!-- table header: center + bold -->
             <th>Mon</th> 
             <th>Tue</th>
             <th>Wed</th>
             <th>Thr</th>
             <th>Fri</th>
-            <th class="blue">Sat</th>
+            <th>Sat</th>
         </tr>
         <tr>
-            <td class="blue">1</td>
+            <td>1</td>
             <td>2</td>
             <td style="color: red;">3</td>
             <td>4</td>
             <td>5</td>
             <td style="color: red;">6</td>
-            <td class="blue">7</td>
+            <td>7</td>
         </tr>
         <tr>
-            <td class="blue">8</td>
+            <td>8</td>
             <td>9</td>
             <td>10</td>
             <td>11</td>
             <td>12</td>
             <td>13</td>
-            <td class="blue">14</td>
+            <td>14</td>
         </tr>
         <tr>
-            <td class="blue">15</td>
+            <td>15</td>
             <td>16</td>
             <td>17</td>
             <td>18</td>
             <td>19</td>
             <td>20</td>
-            <td class="blue">21</td>
+            <td>21</td>
         </tr>
         <tr>
-            <td class="blue">22</td>
+            <td>22</td>
             <td>23</td>
             <td>24</td>
             <td>25</td>
             <td>26</td>
             <td>27</td>
-            <td class="blue">28</td>
+            <td>28</td>
         </tr>
         <tr>
-            <td class="blue">29</td>
+            <td>29</td>
             <td>30</td>
         </tr>
     </table>
