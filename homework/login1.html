@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>로그인</title>
+  <style>
+    .container {
+        margin: 50px auto;
+        width: 530px;
+        height: 640px;
+        background-color: white;
+    }
+    body {
+       background-color:rgb(156, 232, 232);
+    }
+    .login {
+      margin-top: 5%;
+      text-align: center;
+      font-size: 35px;
+    }
+    .asking {
+      text-align: center;
+    }
+    .signup {
+      text-decoration: underline;
+      color: blue;
+      text-align: center;
+    }
+
+    .form-group {
+      width: 370px;
+      margin: 0 auto;
+      margin-bottom: 15px;
+    }
+
+    .form-1label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 4px;
+      text-align: left;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 15px;
+      border-radius: 10px;
+      box-sizing: border-box;
+    }
+    .forgot {
+        display:block;
+        text-align: right;
+        font-size: 13px;
+        color: blue;
+        text-decoration: underline;
+    }
+    .label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    }
+    .rememberMe {
+        text-align: center;
+        font-size: 12px;
+        margin-right: 265px;
+    }
+    .button {
+        text-align: center;
+        margin-top: 20px;
+    }
+    .buttonSize {
+        width: 370px;
+        height: 60px;
+        border-radius: 10px;
+        border: none;
+        font-size: 20px;
+        font-weight: bold;
+        background-color: rgb(84, 164, 238);
+        color: white;
+    }
+    .alternative {
+        margin-top: 20px;
+        text-align: center;
+        color: gray;
+        font-size: 15px;
+    }
+    .google-naver {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+
+    }
+    .Google{
+        margin-left: 80px;
+        background-color: white;
+        border-radius: 10px;
+        width: 370px;
+        height: 60px;
+        color: black;
+        align-items: center;
+    }
+    .image {
+        width: 30px;
+        height: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2 class="login">Login</h2>
+    <p 
+        class="asking">Doesn't have any account yet?
+        <a href="signup">Sign Up</a>
+    </p>
+
+    <div class="form-group">
+        <label for="email" class="form-label">Email Address</label>
+        <input id="email" type="text" placeholder="you@example.com" class="form-input">
+    </div>
+
+    <div class="form-group">
+        <div class="label-row">
+            <label for="password" class="form-label">Password</label>
+            <span class="forgot">Forgot Password?</span>
+        </div>
+        <input id="password" type="password" placeholder="Enter 6 or more characters" class="form-input">
+    </div>
+    <p class="rememberMe">
+        <input type="checkbox"><a>Remeber Me</a>
+    </p>
+    <div class="button">
+        <button class="buttonSize">Login</button>
+    </div>
+    <p class="alternative">---------------------------------or---------------------------------</p>
+    <div class="google-naver">
+        <button class="Google">
+          <img src="image/google.png" alt="google logo" class="image"> Sign in with Google
+        </button>
+    </div>
+  </div>
+</body>
+</html>
