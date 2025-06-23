@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="changeColor3()">배경색 변경하기</button>
+    <script>
+        function changeColor(){
+            if(document.body.style.backgroundColor == 'red'){
+                document.body.style.backgroundColor = 'white';
+            }
+            else {
+                document.body.style.backgroundColor = 'red';
+        }
+    }
+    let currentIndex = 0;
+    function changeColor2(){
+        const colors = ["red", "green", "blue", "yellow", "orange"];
+        document.body.style.backgroundColor = colors[currentIndex];
+        currentIndex += 1;
+        if(currentIndex === colors.length){
+            currentIndex = 0;
+        }
+    }
+    function changeColor3(){
+        const colors = ["red", "green", "blue", "yellow", "orange"];
+        document.body.style.backgroundColor = colors[currentIndex];
+        currentIndex = (currentIndex + 1) % colors.length;
+    }
+    //숙제 랜덤 색상으로
+    //힌트: RGB => RRGGBB
+    function changeColor4(){
+
+    }
+    </script>
+</body>
+</html>
