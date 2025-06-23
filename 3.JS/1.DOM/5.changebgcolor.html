@@ -32,10 +32,11 @@
     //숙제 랜덤 색상으로
     //힌트: RGB => RRGGBB
     function changeColor4(){
-        let num1 = Math.floor(Math.radom()) * 255;
-        let num2 = Math.floor(Math.radom()) * 255;
-        let num3 =  Math.floor(Math.radom()) * 255;
-        document.body.style.backgroundColor = rgb(num1, num2, num3);
+        let num1 = Math.floor(Math.random() * 255);
+        let num2 = Math.floor(Math.random() * 255);
+        let num3 = Math.floor(Math.random() * 255);
+        const color = `rgb(${num1}, ${num2}, ${num3})`;
+        document.body.style.backgroundColor = color;
     }
     </script>
 </body>
