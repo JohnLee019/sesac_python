@@ -5,7 +5,7 @@
     <title>Document</title>
 </head>
 <body>
-    <button onclick="changeColor3()">배경색 변경하기</button>
+    <button onclick="changeColor4()">배경색 변경하기</button>
     <script>
         function changeColor(){
             if(document.body.style.backgroundColor == 'red'){
@@ -32,7 +32,10 @@
     //숙제 랜덤 색상으로
     //힌트: RGB => RRGGBB
     function changeColor4(){
-
+        let num1 = Math.floor(Math.radom()) * 255;
+        let num2 = Math.floor(Math.radom()) * 255;
+        let num3 =  Math.floor(Math.radom()) * 255;
+        document.body.style.backgroundColor = rgb(num1, num2, num3);
     }
     </script>
 </body>
