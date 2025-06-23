@@ -32,15 +32,15 @@
         </tr>
     </table>
     <button onclick="changeAllColor()">색 색상 모두 변경하기</button>
-    <button>색 색상 짝수만 변경하기</button>
-    <button>색 색상 홀수만 변경하기</button>
+    <button onclick="changeEvenColor()">색 색상 짝수만 변경하기</button>
+    <button onclick="changeOddColor()">색 색상 홀수만 변경하기</button>
     <script>
         function changeAllColor(){
-            // let cells = document.getElementsByTagName("td");
-            // //전체 배열 한번에 적용할 수 없음
-            // for(let i = 0; i < cells.length; i++){//하드 코딩하는 변수는 좋지 않은것
-            //     cells[i].style.backgroundColor = 'lightblue';
-            //}
+            let cells = document.getElementsByTagName("td");
+            //전체 배열 한번에 적용할 수 없음
+            for(let i = 0; i < cells.length; i++){//하드 코딩하는 변수는 좋지 않은것
+                cells[i].style.backgroundColor = 'lightblue';
+            }
             // for(let cell of cells){//modern 한 for loop 스타일
             //     cell.style.backgroundColor = 'lightblue';
             // }
@@ -48,6 +48,22 @@
             // cell.forEach(cell => {
             //     cells.style.backgroundColor = 'lightblue';
             // })
+        }
+        function changeOddColor(){
+            let cells = document.getElementsByTagName("td");
+            for(let i = 0; i < cells.length; i++){
+                if((i +1) % 2 != 0){
+                cells[i].style.backgroundColor = 'lightblue';
+                }
+            }
+        }
+        function changeEvenColor(){
+            let cells = document.getElementsByTagName("td");
+            for(let i = 0; i < cells.length; i++){
+                if((i +1) % 2 == 0){
+                cells[i].style.backgroundColor = 'lightblue';
+                }
+            }
         }
     </script>
 </body>
