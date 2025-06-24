@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <h1>숫자 맞추기 게임 (1~100)</h1>
+    <input type="numer" id="guessNumber" placeholder="숫자를 입력하세오">
+    <button id="button" onclick="guess()">Guess</button>
+    <p id="guessDisplay"></p>
+    <script>
+        const target = Math.floor(Math.random() * 101);
+        console.log(target);
+        
+        function guess(){
+            const userGuess = parseInt(document.getElementById('guessNumber').value);
+            console.log(userGuess);
+            const result = document.getElementById('guessDisplay');
+            const guessButton = document.getElementById('button');
+
+            if(userGuess < 1 || userGuess > 100){
+                alert("1이상 또는 100이하의 숫자를 입력하세요")
+                return;
+            }
+            guessButton.disabled = false;
+
+
+            if(userGuess < target){
+                result.textContent = "Too Low";
+
+            } else if(userGuess > target){
+                result.textContent = "Too High";
+            } else {
+                result.textContent = "Correct";
+                guessButton.disabled = true;
+            }
+        }
+    </script>
+</body>
+</html>

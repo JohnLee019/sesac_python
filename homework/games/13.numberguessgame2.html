@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: yellow;
+        }
+        #histories {
+            margin-left: 40px;
+        }
+    </style>
+</head>
+<body>
+    <h1>숫자 맞추기 게임 (1~100)</h1>
+    <input type="numer" id="guessNumber" placeholder="숫자를 입력하세오">
+    <button id="button" onclick="guess()">Guess</button>
+    <p id="guessDisplay"></p>
+    <h2>나의 추측 히스토리</h2>
+    <p id="histories"></p>
+    <script>
+        const target = Math.floor(Math.random() * 101);
+        console.log(target);
+        let tries = 0;
+        
+        function guess(){
+            const userGuess = parseInt(document.getElementById('guessNumber').value);
+            console.log(userGuess);
+            const result = document.getElementById('guessDisplay');
+            const guessButton = document.getElementById('button');
+            const histories = document.getElementById('histories');
+
+            if(userGuess < 1 || userGuess > 100){
+                alert("1이상 또는 100이하의 숫자를 입력하세요")
+                return;
+            }
+            guessButton.disabled = false;
+            const history = document.createElement('p');
+
+            if(userGuess < target){
+                tries++;
+                result.textContent = "Too Low";
+                histories.innerHTML += `${tries}. 예측숫자: ${userGuess}<br>`; 
+            } else if(userGuess > target){
+                tries++
+                result.textContent = "Too High";
+                histories.innerHTML += `${tries}. 예측숫자: ${userGuess}<br>`; 
+            } else {
+                tries++;
+                result.textContent = "Correct";
+                histories.innerHTML += `${tries}. 예측숫자: ${userGuess}<br>`; 
+                guessButton.disabled = true;
+            }
+        }
+    </script>
+</body>
+</html>
