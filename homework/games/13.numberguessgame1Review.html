@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1>숫자 맞추기 게임 (1~100)</h1>
+    <input type="number" id="guessInput" placeholder="숫자를 입력하시오">
+    <button id="guessButton" onclick="checkGuess()">Guess</button>
+    <p id="result"></p>
+
+    <script>
+        function checkGuess(){
+            const randomNumber = Math.floor(Math.random() * 100) + 1; //random range보기
+
+            const guess = document.getElementById('guessInput').value;
+
+            console.log("사용자 입력");
+        }
+    </script>
+</body>
+</html>

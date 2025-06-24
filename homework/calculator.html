@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin-top: 30vh;
+            align-items: center;
+            text-align: center;
+        }
+        div button:not(.result){
+            width: 60px;
+            height: 40px;
+            margin: 3px 3px;
+            font-weight: bold;
+            font-size: 15px;
+        }
+        .result {
+            width: 270px;
+            height: 40px;
+            margin-left: 40.5vw;
+            background-color: rgb(199, 197, 197);
+            border-radius: 3px;
+            margin-bottom: 5px;
+            border-width: bold;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <p class="result"></p>
+        <div class="button">
+            <button onclick="calculate(this)">+</button>
+            <button onclick="calculate(this)">-</button>
+            <button onclick="calculate(this)">*</button>
+            <button onclick="calculate(this)">/</button>
+        </div>  
+        <div> 
+            <button onclick="calculate(this)">7</button>
+            <button onclick="calculate(this)">8</button>
+            <button onclick="calculate(this)">9</button>
+            <button onclick="calculate(this)">=</button>
+        </div>
+        <div> 
+            <button onclick="calculate(this)">4</button>
+            <button onclick="calculate(this)">5</button>
+            <button onclick="calculate(this)">6</button>
+            <button onclick="calculate(this)">C</button>
+        </div>
+        <div>
+            <button onclick="calculate(this)">1</button>
+            <button onclick="calculate(this)">2</button>
+            <button onclick="calculate(this)">3</button>
+            <button onclick="calculate(this)">0</button>
+        </div> 
+    </div>
+    <script>
+        let number = " ";
+        function calculate(button){
+            const userWant = button.textContent;
+            const test = parseInt(button.textContent);
+            const last = parseInt(number[number.length-1]);
+            console.log(userWant);
+            let temp = '';
+
+            // 5 + 5 = 10   NaN
+            if(isNaN(test) && number.length === 0){//첫번째가 기호
+                alert("Error");
+                return;
+            } else if(userWant === 'C'){
+                number = " ";
+                return
+            }
+            else if((isNaN(test) && isNaN(last))){//기호가 연속적으로 나옴
+                alert("Error");
+                return;
+            }
+            else if(isNaN(test)){//기호
+
+            } 
+            else {//숫자
+                number += (userWant + ''); 
+            }
+        }
+    </script>
+</body>
+</html>
