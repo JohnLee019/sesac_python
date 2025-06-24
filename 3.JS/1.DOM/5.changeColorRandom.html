@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body {
+            text-align: center;
+            height: 80hv; /*viewport, 높이의 단위*/
+            display:flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column; /*위에서 아래로 정렬*/
+        }
+        #colorCode {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.7); /*반투명 흰색*/
+            border: 1px solid black;
+            border-radius: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="colorCode">색상 코드는 여기에 표시할 예정</div>
+    <button onclick="color3()">배경색 변경하기</button>
+    <script>
+    //숙제 랜덤 색상으로
+    //힌트: RGB => RRGGBB
+    //자리수 맞추기 2자리로 맞추기 padStart(2, '0') 2자리로 빈칸을 0으로 채운다 
+    function changeColor4(){
+        let num1 = Math.floor(Math.random() * 256).toString(16).padStart(2, '0');
+        let num2 = Math.floor(Math.random() * 256).toString(16).padStart(2, '0');
+        let num3 = Math.floor(Math.random() * 256).toString(16).padStart(2, '0');
+        document.body.style.backgroundColor = "#" + num1 + num2 + num3;
+    }
+    function changeRandomColor(){
+         let num1 = Math.floor(Math.random() * 256);
+         let num2 = Math.floor(Math.random() * 256);
+         let num3 = Math.floor(Math.random() * 256);
+         document.body.style.backgroundColor = `rgb(${r},${g},${b})`;
+    }
+    function color3(){
+        const rrggbb = Math.floor(Math.random() *16777216).toString(16).padStart(6, '0');
+        document.body.style.backgroundColor = '#' + rrggbb;
+        displayColor(rrggbb);
+    }
+    function displayColor(color){
+        const colorDisplay = document.getElementById('colorCode');
+        colorDisplay.textContent = `현재 배갱색상은 ${color}`;
+    }
+    </script>
+</body>
+</html>
