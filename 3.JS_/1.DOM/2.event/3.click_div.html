@@ -24,8 +24,25 @@
         // document.getElementById('myDiv').addEventListener('mouseup', () => {
         //     console.log('div영역 클릭');
         // });
-        document.getElementById('myDiv').addEventListener('mouseup', (event) => {
-            console.log('div영역 클릭', event.button);
+        // document.getElementById('myDiv').addEventListener('mouseup', (event) => {
+        //     console.log('div영역 클릭', event.button);
+
+        //     switch(event.button){
+        //         case 0:
+        //             console.log("좌클릭 이벤트 발행함");
+        //             break;
+        //         case 1:
+        //              console.log("중간훨 버튼 이벤트 클릭됨");
+        //             break;
+        //         case 2: 
+        //              console.log("우클릭 이벤트 발행함");
+        //             break;
+        //         default: 
+        //              console.log("그외 버튼");
+        //     }
+        // });
+        document.getElementById('myDiv').addEventListener('dblclick', (event) => {
+            console.log('div영역 클릭', event.button)
         });
     </script>
 </body>

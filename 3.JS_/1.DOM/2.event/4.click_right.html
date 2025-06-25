@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         #myDiv {
+            width: 100px;
+            height: 100px;
+            background-color: lightblue;
+        }
+    </style>
+</head>
+<body>
+    <div id="myDiv"></div>
+    <script>
+        // document.getElementById('myDiv').addEventListener('contextmenu', (e)=>{
+        //     e.preventDefault(); //본연의 기능이 동작하지 않게함 (이 네모 상자 안에서는)
+        //     console.log('우클릭 감지됨');
+        // });
+        document.addEventListener('contextmenu', (e)=>{
+            e.preventDefault(); //본연의 기능이 동작하지 않게함 (이 네모 상자 안에서는)
+            alert('우클릭 금지됨');
+        });
+    </script>
+</body>
+</html>
