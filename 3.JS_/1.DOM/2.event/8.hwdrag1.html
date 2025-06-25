@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #dragItem1, #dragItem2, #dragItem3 {
+            width: 100px;
+            height: 100px;
+            
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        #dragItem1 {
+           background-color: #ffcc00;
+        }
+        #dragItem2 {
+            background-color: #00ffff;
+        }
+        #dragItem3 {
+            background-color: #ee82ee;
+        }
+        #dropzone {
+            width: 200px;
+            height: 200px;
+            border: 2px dashed #cccccc;
+            background-color: #f0f0f0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="dragItem1" draggable="true">Drag me</div>
+    <div id="dragItem2" draggable="true">Drag me</div>
+    <div id="dragItem3" draggable="true">Drag me</div>
+    <div id="dropzone">Drop here</div>
+    <script>
+        const dragItem1 = document.getElementById('dragItem1');
+        const dragItem2 = document.getElementById('dragItem2');
+        const dragItem3 = document.getElementById('dragItem3');
+        const dropZone = document.getElementById('dropzone');
+        
+        let currentItem = '';
+
+        dragItem1.addEventListener('dragstart', function(){
+            currentItem = this.id;
+        });
+        dragItem2.addEventListener('dragstart', function(){
+            currentItem = this.id;
+        });
+        dragItem3.addEventListener('dragstart', function(){
+            currentItem = this.id;
+        });
+
+        dropZone.addEventListener('dragover', function(event){
+            event.preventDefault();
+        });
+
+        dropZone.addEventListener('drop', function(){
+            let dragItem = document.getElementById(currentItem);
+            if(!dropZone.contains(dragItem))
+            dropZone.appendChild(dragItem); 
+        });
+    </script>
+</body>
+</html>
