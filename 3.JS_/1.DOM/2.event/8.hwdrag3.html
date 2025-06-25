@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Document</title>
+  <style>
+    .container {
+      display: flex;
+      flex-direction: column;
+      width: 200px;
+      margin: 60px;
+      gap: 30px;
+    }
+
+    #dragItem1 {
+      width: 100px;
+      height: 100px;
+      background-color: #ffcc00;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .dropzone {
+      width: 200px;
+      height: 200px;
+      border: 2px dashed #cccccc;
+      background-color: #f0f0f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+   
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="dragItem1" draggable="true">Drag me</div>
+    <div class="dropzone">Drop here 1</div>
+    <div class="dropzone">Drop here 2</div>
+  </div>
+
+  <script>
+    const dragItem = document.getElementById('dragItem1');
+    let currentItemId = '';
+
+    dragItem.addEventListener('dragstart', function () {
+      currentItemId = this.id;
+    });
+
+    const dropZone1 = document.querySelectorAll('.dropzone')[0];
+    const dropZone2 = document.querySelectorAll('.dropzone')[1];
+
+    dropZone1.addEventListener('dragover', function(event) {
+      event.preventDefault();
+    });
+
+    dropZone2.addEventListener('dragover', function(event) {
+      event.preventDefault();
+    });
+
+    dropZone1.addEventListener('drop', function() {
+      const dragged = document.getElementById(currentItemId);
+      if (!this.contains(dragged)) {
+        this.appendChild(dragged);
+      }
+    });
+
+    dropZone2.addEventListener('drop', function() {
+      const dragged = document.getElementById(currentItemId);
+      if (!this.contains(dragged)) {
+        this.appendChild(dragged);
+      }
+    });
+  </script>
+</body>
+</html>
