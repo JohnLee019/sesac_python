@@ -23,35 +23,27 @@
         const userInput = document.getElementById('userInput');
 
         addTodo.addEventListener('click', function() {
-            const inputValue = document.getElementById('userInput').value;
-            if (inputValue === '') return;
-
-            const new_li = document.createElement('li');
-            new_li.textContent = inputValue;
-            todoList.appendChild(new_li);
-            userInput.value = ''; 
-            click(new_li.textContent);
+            addAll();
         });
 
         userInput.addEventListener('keydown', function(e) {
             if (e.key === 'Enter') {
-            const inputValue = document.getElementById('userInput').value;
-            if (inputValue === '') return;
-
-            const new_li = document.createElement('li');
-            new_li.textContent = inputValue;
-            todoList.appendChild(new_li);
-            userInput.value = ''; 
-            click(new_li.textContent);
+                addAll();
             }
         });
 
-        function click(e){
-            //e.preventDefault();
-            todoList.addEventListener('click', function(){
-                line(todoList);
-            });
+        function addAll(){
+            const inputValue = document.getElementById('userInput').value;
+            if (inputValue === '') return;
+            const new_li = document.createElement('li');
+            new_li.textContent = inputValue;
+            todoList.appendChild(new_li);
+            userInput.value = '';
+            new_li.addEventListener('click', function(){
+                line(new_li);
+            }); 
         }
+
        function line(e) {
             if (e.style.textDecoration === 'line-through') {
                 e.style.textDecoration = 'none';
