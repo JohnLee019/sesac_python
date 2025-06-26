@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #todoList {
+            cursor: pointer;
+            /* text-decoration-line: line-through; */
+        }
+        #check {
+            align-items: left;
+            justify-content: left;
+        }
+        #image {
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>To-Do List</h1>
+    <input type="text" id="userInput" placeholder="할 일 추가하기">
+    <button id="addTodo">Add</button>
+    <ul id="todoList"><!--할일 추가할곳--></ul>
+
+    <script>
+        const todoList = document.getElementById('todoList');
+        const addTodo = document.getElementById('addTodo');
+        const userInput = document.getElementById('userInput');
+
+        addTodo.addEventListener('click', function() {
+            addAll();
+        });
+
+        userInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                addAll();
+            }
+        });
+
+        function addAll(){
+            const inputValue = document.getElementById('userInput').value;
+            if (inputValue === '') return;
+            const new_li = document.createElement('a');
+            const check = document.createElement('input');
+            const image = document.createElement('img');
+            const p = document.createElement('p');
+            image.src = 'image/x.jpg';
+            image.id = 'image';
+            check.type = 'checkbox';
+            check.id = 'check';
+            new_li.textContent = inputValue;
+            todoList.appendChild(check);
+            todoList.appendChild(new_li);
+            todoList.appendChild(image);
+            todoList.appendChild(p);
+            userInput.value = '';
+            new_li.addEventListener('click', function(){
+                line(new_li);
+            }); 
+            image.addEventListener('click', function(){
+                new_li.remove();
+                image.remove();
+                check.remove();
+            });
+        }
+
+       function line(e) {
+            if (e.style.textDecoration === 'line-through') {
+                e.style.textDecoration = 'none';
+            } else {
+                e.style.textDecoration = 'line-through';
+            }
+        }
+       
+
+
+    </script>
+</body>
+</html>
