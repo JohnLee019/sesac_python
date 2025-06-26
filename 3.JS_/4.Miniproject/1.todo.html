@@ -28,7 +28,6 @@
         function addAll(){
             const inputValue = document.getElementById('userInput').value;
             if (inputValue === '') return;
-
             const new_li = document.createElement('li');
             new_li.textContent = inputValue;
             todoList.appendChild(new_li);
