@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: rgb(237, 235, 235);
+            height: 100vh;    
+            display: flex;
+            justify-content: center; 
+            align-items: center;   
+        }
+        #container {
+            width: 430px;
+            height: 230px;
+            background-color: white;
+            align-items: center;
+            text-align: center;
+            border-radius: 25px;
+        }
+        #start, #stop, #reset {
+            height: 50px;
+            width: 100px;
+            font-size: 20px;
+            margin: 5px;
+            border-radius: 3px;
+        }
+        #timer {
+            text-align: center;
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="timer">
+            <span id="minutes">00</span>:<span id="seconds">00</span>:<span id="miliseconds">00</span>
+        </div>
+        <button id="start">Start</button>
+        <button id="stop">Stop</button>
+        <button id="reset">Reset</button>
+    </div>
+    <script>
+        let miliseconds = 0;
+        let seconds = 0;
+        let minutes = 0;
+        const startButton = document.getElementById('start');
+        const stopButton = document.getElementById('stop');
+        const resetButton = document.getElementById('reset');
+        const minutesDisplay = document.getElementById('minutes');
+        const secondsDisplay = document.getElementById('seconds');
+        const milisecondsDisplay = document.getElementById('miliseconds');
+        const display = document.getElementById('timer');
+        let startTimer;
+
+        startButton.addEventListener('click', function(){
+            startButton.disabled = true;
+            stopButton.disabled = false;
+            resetButton.disabled = false;
+            startTimer = setInterval(() => {
+                start();
+              }, 10);
+        });
+        stopButton.addEventListener('click', function(){
+            startButton.disabled = false;
+            stopButton.disabled = true;
+            resetButton.disabled = false;
+            clearInterval(startTimer);
+        });
+        resetButton.addEventListener('click', function(){
+            startButton.disabled = false;
+            stopButton.disabled = false;
+            resetButton.disabled = true;
+            clearInterval(startTimer);
+            milisecondsDisplay.textContent = "00";
+            secondsDisplay.textContent = "00";
+            minutesDisplay.textContent = "00";
+            miliseconds = 0;
+            seconds = 0;
+            minutes = 0;
+        })
+
+        function start(){
+            miliseconds++;
+            milisecondsDisplay.textContent = miliseconds;
+            if(miliseconds >= 100){
+                seconds++;
+                secondsDisplay.textContent = seconds;
+                miliseconds = 0;
+            }
+            if(seconds >= 60){
+                minutes++;
+               minutesDisplay.textContent = minutes;
+               seconds = 0;
+            }
+            milisecondsDisplay.textContent = String(miliseconds).padStart(2, '0');
+            secondsDisplay.textContent = String(seconds).padStart(2, '0');
+            minutesDisplay.textContent = String(minutes).padStart(2, '0');
+        }
+        function reset(currentTime){
+            currentTime = 0;
+            display.textContent = currentTime.toFixed(2);
+        }
+    </script>
+</body>
+</html>
