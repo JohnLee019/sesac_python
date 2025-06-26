@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #todoList {
+            cursor: pointer;
+            /* text-decoration-line: line-through; */
+        }
+    </style>
+</head>
+<body>
+    <h1>To-Do List</h1>
+    <input type="text" id="userInput" placeholder="할 일 추가하기">
+    <button id="addTodo">Add</button>
+    <ul id="todoList"><!--할일 추가할곳--></ul>
+
+    <script>
+        const todoList = document.getElementById('todoList');
+        const addTodo = document.getElementById('addTodo');
+        const userInput = document.getElementById('userInput');
+
+        addTodo.addEventListener('click', function() {
+            addAll();
+        });
+
+        userInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                addAll();
+            }
+        });
+
+        function addAll(){
+            const inputValue = document.getElementById('userInput').value;
+            if (inputValue === '') return;
+            const new_li = document.createElement('li');
+            const button = document.createElement('button');
+            new_li.textContent = inputValue;
+            button.textContent = '삭제';
+            new_li.appendChild(button);
+            document.querySelector('ul').appendChild(new_li);
+            userInput.value = '';
+            new_li.addEventListener('click', function(){
+                line(new_li);
+            }); 
+            button.addEventListener('click', function(){
+                new_li.remove();
+                button.remove();
+            });
+        }
+
+       function line(e) {
+            if (e.style.textDecoration === 'line-through') {
+                e.style.textDecoration = 'none';
+            } else {
+                e.style.textDecoration = 'line-through';
+            }
+        }
+
+
+    </script>
+</body>
+</html>
