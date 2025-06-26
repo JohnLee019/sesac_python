@@ -7,7 +7,7 @@
     <style>
         #todoList {
             cursor: pointer;
-            
+            /* text-decoration-line: line-through; */
         }
     </style>
 </head>
@@ -47,9 +47,17 @@
         });
 
         function click(e){
+            //e.preventDefault();
             todoList.addEventListener('click', function(){
-                console.log('delete');
+                line(todoList);
             });
+        }
+       function line(e) {
+            if (e.style.textDecoration === 'line-through') {
+                e.style.textDecoration = 'none';
+            } else {
+                e.style.textDecoration = 'line-through';
+            }
         }
     </script>
 </body>
