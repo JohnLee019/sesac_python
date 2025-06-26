@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>To-Do List</h1>
+    <input type="text" id="userInput" placeholder="할 일 추가하기">
+    <button id="addTodo">Add</button>
+    <ul id="todoList"><!--할일 추가할곳--></ul>
+
+    <script>
+        const todoList = document.getElementById('todoList');
+        const addTodo = document.getElementById('addTodo');
+        const userInput = document.getElementById('userInput');
+
+        addTodo.addEventListener('click', function() {
+            const inputValue = document.getElementById('userInput').value;
+            if (inputValue === '') return;
+
+            const new_li = document.createElement('li');
+            new_li.textContent = inputValue;
+            todoList.appendChild(new_li);
+            userInput.value = ''; 
+        });
+
+        userInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+            const inputValue = document.getElementById('userInput').value;
+            if (inputValue === '') return;
+
+            const new_li = document.createElement('li');
+            new_li.textContent = inputValue;
+            todoList.appendChild(new_li);
+            userInput.value = ''; 
+            }
+        });
+    </script>
+</body>
+</html>

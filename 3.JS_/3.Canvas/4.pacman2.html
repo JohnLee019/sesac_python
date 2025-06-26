@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        /* body {
+            background-color: black;
+        } */
         canvas {
             border: 1px solid black;
         }
@@ -19,16 +22,21 @@
 
         let x = 100;
         let y = 100;
+        let endAngle = 1.8 * Math.PI; //324도
+        let startAngle = 0.2 * Math.PI; //36도
 
         function drawPacman() {
             context.fillStyle = 'yellow';
             context.beginPath();
             context.moveTo(x, y); // 시작점
-            const startAngle = 0.2 * Math.PI; // 대충~ 40도 전후
-            const endAngle = 1.8 * Math.PI; // 대충~ 320도 전후
             context.arc(x, y, 30, startAngle, endAngle);
             context.fill();
             context.closePath();
+            startAngle += 0.1;
+        }
+        function updateAngles() {
+            startAngle += 0.01;
+            endAngle -= 0.01;
         }
 
         function animate() {
@@ -44,39 +52,6 @@
         // 2. 키를 누를때마다 해당 방향으로 연속적으로 이동한다..
         document.addEventListener('keydown', handleKeyDown);
         
-        // 미션 1번
-        // function handleKeyDown(event) {
-        //     console.log(event.key);
-        //     if(event.key === 'ArrowRight'){
-        //         x += 10;
-        //     } else if(event.key === 'ArrowUp'){
-        //         y -= 10;
-        //     } else if(event.key === 'ArrowLeft'){
-        //         x -= 10;
-        //     } else if(event.key === 'ArrowDown'){
-        //         y += 10;
-        //     }
-        // }
-
-        // 미션 2번
-        let z = 50;
-        let direction = 1;
-        let speed = 5;
-
-        function handleKeyDown(event) {
-             if(event.key === 'ArrowRight'){
-                 z = z + speed * direction;
-
-            } else if(event.key === 'ArrowUp'){
-            
-            } else if(event.key === 'ArrowLeft'){
-              
-            } else if(event.key === 'ArrowDown'){
-               
-            }
-            requestAnimationFrame(handleKeyDown);
-        }
-
 
 
         animate();
