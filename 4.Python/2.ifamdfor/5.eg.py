@@ -72,6 +72,29 @@ def find_user3(name=None, age=None):
             
     return result
 
+# print(find_user3(name='Bob'))
+# print(find_user3(age=40))
+# print(find_user3('Bob', 40))
+# print(find_user3(age=40, name='Bob'))
+
+print('---간단한 버전 재구현 ---')
+def find_user3(name=None, age=None):
+    result = []
+
+    for u in users:
+        if name is not None and age is not None: #이름도 있고 나이도 있음
+            if u["name"] == name and u["age"] == age:
+                result.append(u)
+        elif name is not None: #이름만 있음
+            if u["name"] == name:
+                result.append(u)
+        elif age is not None: #나이만 있음
+            if u["age"] == age:
+                result.append(u)
+        else: #둘다 없으면, 모든 사용자 다 포함
+            result.append(u)
+    #아무것도 없으면 빈값 반환
+    return result
 print(find_user3(name='Bob'))
 print(find_user3(age=40))
 print(find_user3('Bob', 40))
