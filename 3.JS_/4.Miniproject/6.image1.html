@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #location{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 50vh;
+        }
+        .enlarged{
+            height: auto;
+            width: 600px;            
+        }
+    </style>
+</head>
+<body>
+    <h1>Image Gallery</h1>
+    <div>
+    <img src="image/dog1.jpg" id="image1">
+    <img src="image/dog2.jpg" id="image2">
+    <img src="image/dog3.jpg" id="image3">
+    <p id="location"></p>
+    </div>
+    <script>
+        const dog1 = document.getElementById('image1');
+        const dog2 = document.getElementById('image2');
+        const dog3 = document.getElementById('image3');
+        const newImage = document.createElement('img');
+        const locationsa = document.getElementById('location');
+
+        dog1.addEventListener('click', function(){
+
+            biggerImage(dog1);
+        })
+
+        dog2.addEventListener('click', function(){
+            biggerImage(dog2);
+        })
+
+        dog3.addEventListener('click', function(){
+            biggerImage(dog3);
+        })
+
+        function biggerImage(image){
+            newImage.src = image.src;
+            newImage.classList.add('enlarged');
+            locationsa.appendChild(newImage);
+        }
+    </script>
+</body>
+</html>
