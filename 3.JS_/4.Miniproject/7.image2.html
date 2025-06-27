@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;  
+            gap: 20px;
+        }
+        #name {
+            align-items: center;
+        }
+        #button1 {
+            width: 90px;
+            height: 40px;
+            border-radius: 5px;
+        }
+        #button2 {
+            width: 60px;
+            height: 40px;
+             border-radius: 5px;
+        }
+        #button-group {
+            display: flex;
+            gap: 10px;
+        }
+        #image{
+            width: 600px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="imageLocation"></div>
+            <image src="image/dog1.jpg" id="image"></image>
+            <p id="name">dog1.jpg</p>
+            <div id="button-group">
+                <button id="button1">previous</button>
+                <button id="button2">next</button>
+        </div>
+    </div>
+    <script>
+        const previous = document.getElementById('button1');
+        const next = document.getElementById('button2');
+
+        previous.addEventListener('click', function(){
+            
+        });
+
+        next.addEventListener('click', function(){
+            moveRight();
+        });
+
+        function moveRight(){
+
+        }    
+    </script>
+</body>
+</html>
