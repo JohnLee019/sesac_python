@@ -107,8 +107,3 @@
 
 # now = datetime.datetime.now()
 # print(now)                    현재 시간을 화면에 출력
-
-import datetime
-
-now = datetime.datetime.now()
-print(now.strftime("%H:%M:%S"))
