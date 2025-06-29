@@ -45,33 +45,36 @@
                 <button id="button1">previous</button>
                 <button id="button2">next</button>
         </div>
-    </div>
     <script>
-        const previous = document.getElementById('button1');
-        const next = document.getElementById('button2');
-        const image = document.createElement('img');
-        const location1 = document.getElementById('location');
-        const name = document.getElementById('name');
-        
-        image.src = "image/dog1.jpg";
-        image.classList.add('image');
-        location1.appendChild(image);
+  const prevBtn = document.getElementById('button1');
+  const nextBtn = document.getElementById('button2');
+  const imgBox = document.getElementById('location');
+  const fileName = document.getElementById('name');
 
-        previous.addEventListener('click', function(){
-            moveLeft();
-        });
+  const img = document.createElement('img');
+  img.className = 'image';
+  imgBox.appendChild(img);
 
-        next.addEventListener('click', function(){
-            moveRight();
-        });
+  const imgs = ["image/dog1.jpg", "image/dog2.jpg", "image/dog3.jpg"];
+  let idx = 0;
 
-        function moveRight(){
-            
-        }    
+  function update() {
+    img.src = imgs[idx];
+    fileName.textContent = imgs[idx].split('/').pop();
+  }
 
-        function moveLeft(){
+  prevBtn.onclick = () => {
+    idx = (idx - 1 + imgs.length) % imgs.length;
+    update();
+  }
 
-        }
-    </script>
+  nextBtn.onclick = () => {
+    idx = (idx + 1) % imgs.length;
+    update();
+  }
+
+  update();
+</script>
+
 </body>
 </html>
