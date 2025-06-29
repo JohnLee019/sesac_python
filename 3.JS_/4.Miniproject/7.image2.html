@@ -30,7 +30,7 @@
             display: flex;
             gap: 10px;
         }
-        #image{
+        .image{
             width: 600px;
             height: auto;
         }
@@ -39,8 +39,8 @@
 <body>
     <div id="container">
         <div id="imageLocation"></div>
-            <image src="image/dog1.jpg" id="image"></image>
-            <p id="name">dog1.jpg</p>
+        <div id="location"></div>
+        <p id="name">dog1.jpg</p>
             <div id="button-group">
                 <button id="button1">previous</button>
                 <button id="button2">next</button>
@@ -50,10 +50,15 @@
         const previous = document.getElementById('button1');
         const next = document.getElementById('button2');
         const image = document.createElement('img');
+        const location1 = document.getElementById('location');
+        const name = document.getElementById('name');
+        
+        image.src = "image/dog1.jpg";
+        image.classList.add('image');
+        location1.appendChild(image);
 
         previous.addEventListener('click', function(){
             moveLeft();
-            
         });
 
         next.addEventListener('click', function(){
