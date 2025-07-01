@@ -107,3 +107,21 @@
 
 # now = datetime.datetime.now()
 # print(now)                    현재 시간을 화면에 출력
+
+def palindrome(s):
+    num = len(s) // 2
+    if num % 2 == 0:
+        first_half = s[0: num]
+        second_half = s[-1:num-1:-1]
+        if first_half == second_half:
+            return True
+        else:
+            return False
+    else:
+        first_half = s[0: num]
+        second_half = s[-1: num:-1]
+        if first_half == second_half:
+            return True
+        else:
+            return False
+print(palindrome('anbna'))
