@@ -1,0 +1,40 @@
+Americano
+Espresso
+Double Espresso
+Macchiato
+Latte (Caffe Latte)
+Cappuccino
+Flat White
+Mocha
+Vanilla Latte
+Caramel Latte
+Hazelnut Latte
+Cafe au Lait
+Affogato
+Cold Brew
+Nitro Cold Brew
+Iced Americano
+Iced Latte
+Iced Mocha
+Iced Vanilla Latte
+Iced Caramel Macchiato
+Classic Cheesecake
+New York Cheesecake
+Basque Burnt Cheesecake
+Tiramisu Cake
+Chocolate Cake
+Chocolate Mousse Cake
+Red Velvet Cake
+Carrot Cake
+Pound Cake
+Lemon Pound Cake
+Strawberry Cake
+Victoria Sponge Cake
+Matcha Green Tea Cake
+Earl Grey Cake
+Banana Cake
+Walnut Cake
+Coffee Cake 
+Mille Crepe Cake
+Roll Cake 
+Chiffon Cake
