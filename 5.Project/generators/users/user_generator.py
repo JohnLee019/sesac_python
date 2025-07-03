@@ -4,6 +4,7 @@ from gender_generator import GenderGenerator
 from address_generator import AddressGenerator
 from age_generator import AgeCalculate
 from id_generator import IdGenerator
+from firstName_generator import FirstNameGenerator
 
 class UserGenerator:
     def __init__(self):
@@ -13,12 +14,13 @@ class UserGenerator:
         self.address_gen = AddressGenerator('cities.txt')
         self.age_gen = AgeCalculate()
         self.id_gen = IdGenerator()
+        self.first_name_gen = FirstNameGenerator('first_name.txt')
         
     def generate_user(self, count):
         users = []
         for _ in range(count):
             id = self.id_gen.generate_id()
-            name = self.name_gen.generate_name()
+            name = self.first_name_gen.generate_name()+ self.name_gen.generate_name()
             bday = self.bday_gen.generate_birthdate()
             gender = self.gender_gen.generate_gender()
             address = self.address_gen.generate_address()
