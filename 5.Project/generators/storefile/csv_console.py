@@ -10,7 +10,7 @@ class DisplayData(StoreGenerator):
 
     def print_csv(self, count):
         data = self.generate_store(count)
-        with open('users.csv', 'w', newline='', encoding='utf-8') as file:
+        with open('store.csv', 'w', newline='', encoding='utf-8') as file:
             writer = csv.writer(file)
             # CSV 헤더 작성
             writer.writerow(['Id', 'Name', 'Gender','Age', 'Birthdate', 'Address'])
