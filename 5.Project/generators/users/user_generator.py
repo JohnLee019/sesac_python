@@ -35,5 +35,3 @@ class DisplayUsersData(UserGenerator):
         for id, name, gender, age, birthdate, address in data:
             print(f"{id},{name},{gender},{age},{birthdate},{address}")
 
-my_data = DisplayUsersData()
-my_data.print_data(10)
