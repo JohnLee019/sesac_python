@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .error{
+            color:red
+        }
+        .success {
+            color: green
+        }
+    </style>
+</head>
+<body>
+    <button id="load">로드</button>
+    <div id="result"></div>
+
+    <script>
+        const loadBtn = document.getElementById('load')
+        const resultDiv = document.getElementById('result');
+
+        loadBtn.addEventListener('click', () => {
+            console.log('버튼클릭')
+            fetch('https://127.0.0.1:5000/data')
+                .then(response =>{
+                    if (!response.ok) {
+                        throw new Error('통신중 오류가 발생했습니다')
+                    }
+                    return response.json()
+                })
+                .then(data => {
+                    resultDiv.classList.add('success');
+                    console.log(data)
+                    resultDiv.innerHTML = data.result
+                })
+                .catch(error => {
+                    resultDiv.classList.add('error');
+                    resultDiv.innerHTML = "통신중 오류가 발생했습니다."
+                })
+                console.log('fetch이후')
+            })
+    </script>
+</body>
+</html>
