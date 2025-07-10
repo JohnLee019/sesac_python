@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>이미지 업로드</title>
+</head>
+<body>
+    <h1>이미지 업로드</h1>
+    <form action="/index" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <input type="text" name="keyword" placeholder="예: cat, animal">
+        <button type="submit">업로드</button>
+    </form>
+
+    <h2>이미지 목록</h2>
+    {% if files %}
+    <table border="1">
+        <tr>
+            <th>미리보기</th>
+            <th>파일명</th>
+            <th>키워드</th>
+            <th>수정</th>
+            <th>삭제</th>
+        </tr>
+        {% for f in files %}
+        <tr>
+            <td><img src="{{ url_for('uploaded_file', filename=f) }}" width="100"></td>
+            <td>{{ f }}</td>
+            <td>
+                <form action="/update/{{ f }}" method="POST">
+                    <input type="text" name="keyword" value="{{ file_keywords.get(f, '') }}">
+                    <button type="submit">수정</button>
+                </form>
+            </td>
+            <td>
+                <a href="/delete/{{ f }}">삭제</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+</body>
+</html>
