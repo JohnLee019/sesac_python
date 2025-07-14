@@ -1,0 +1,27 @@
+<div>
+  <canvas id="myChart"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    
+    const labels = ['1월', '2월', '3월', '4월', '5월', '6월', '7월'];
+    const data = {
+        labels: labels,
+        datasets: [{
+            label: 'My First Dataset',
+            data: [10, 30, 80, 81, 56, 55, 10],
+            fill: false,
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.5
+        }]
+    };
+    const ctx = document.getElementById('myChart');
+    const config = {
+    type: 'line',
+    data: data,
+  };
+    new Chart(ctx, config)
+
+</script>
