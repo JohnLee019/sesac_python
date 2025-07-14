@@ -1,7 +1,15 @@
+# 맥북 사용자용 인덱스 파일
 .DS_Store
 
-#파이썬 컴파일된 결과 파일
-*.pyc
+# 파이썬 컴파일된 결과 파일
 __pycache__/
+*.pyc
 
+# 우리의 데이터파일 (업로드 파일, sqlite 같은 db 파일)
 **/uploads/*
+*.db
+*.sqlite
+*.sqlite3
+
+# 민감정보파일
+.env
