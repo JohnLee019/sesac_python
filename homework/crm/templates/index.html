@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            background-color:  #f1f1f1;
+            border: 1px solid #555;
+        }
+        li {
+            flex: 1;
+            width: 100px;
+            text-align: center;
+        }
+        li a {
+            text-decoration: none;
+            padding: 12px 15px;
+            display: block; /*전체 영역을 클릭 가능한 영역으로*/
+        }
+        li a:hover {
+            background-color: #555;
+            color: white;
+        }
+        #listbar {
+            margin-top: 30px;
+        }
+        table {
+        margin-top: 25px;
+        border-collapse: collapse;
+        width: 100%;
+        }
+        th, td {
+            padding: 12px 24px;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+        #gender {
+            width: 80px;
+            height: 30px;
+            margin-right: 5px;
+        }
+        #name {
+            width: 100px;
+            height: 24.5px;
+        }
+        #button {
+            width: 60px;
+            height: 29.5px;
+        }
+        .movebutton {
+            text-decoration: none;
+            color: black;
+            padding: 4px 10px;
+            border: 1px solid rgb(167, 166, 166);
+            border-radius: 4px;
+            background-color: rgb(247, 245, 245);
+            margin: 0 5px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li><a href="#">User</a></li>
+        <li><a href="#">Order</a></li>
+        <li><a href="#">Order Item</a></li>
+        <li><a href="#">Item</a></li>
+        <li><a href="#">Store</a></li>
+    </ul>
+    <!-- <form id="listbar" method="POST">
+     -->
+    <form id="listbar">    
+            Name: <input type="text" id="name" name="name" required placeholder="이름 입력" value="{{ name }}">
+            Gender: <select id="gender" name="gender" value="{{ gender }}">
+                <option value="" {% if gender == "" %}selected{% endif %}>성별 선택</option>
+                <option value="female" {% if gender == "female" %}selected{% endif %}>Female</option>
+                <option value="male" {% if gender == "male" %}selected{% endif %}>Male</option>
+            </select>
+            <button type="submit" id="button">Submit</button>
+    </form>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Age</th>
+            <th>Birthday</th>
+        </tr>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.Id }}</td>
+            <td>{{ user.Name }}</td>
+            <td>{{ user.Gender }}</td>
+            <td>{{ user.Age }}</td>
+            <td>{{ user.Birthdate }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <div class="pagination">
+        <a href="?page=1" id="movetofirst"><<</a>
+    {% for page_num in range(1, total_pages +1) %}
+            <a href="?page={{page_num}}" class="movebutton">{{ page_num }}</a>
+    {% endfor %}
+        <a href="?page={{total_pages}}">>></a>
+    </div>
+</body>
+</html>
+
+
