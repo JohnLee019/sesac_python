@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='web.css')}}">
+</head>
+<body>
+    {% include "components/listbar.html" %}
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Order ID</th>
+            <th>Item ID</th>
+        </tr>
+        {% for item in order_items %}
+        <tr>
+            <td>{{ item.Id }}</td>
+            <td><a href="/order_detail?id={{item.OrderId}}" style="text-decoration:none; color: rgb(74, 74, 248)">{{ item.OrderId }}</a></td>
+            <td><a href="/item_detail?id={{item.ItemId}}" style="text-decoration:none; color: rgb(74, 74, 248)">{{ item.ItemId }}</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+    {% include "components/pagination.html" %}
+</body>
+</html>
