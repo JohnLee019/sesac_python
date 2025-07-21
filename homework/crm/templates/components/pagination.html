@@ -1,0 +1,70 @@
+<div class="pagination">
+    {% set prev_page = page - 1 %}
+    {% set next_page = page + 1 %}
+    {% set start = page - 2 %}
+    {% set end = page + 2 %}
+    {% set real_start = 1 if start < 1 else start %}
+    {% set real_end = total_pages if end > total_pages else end %}
+
+    <!-- << 와 Previous -->
+    {% if name or gender %}
+        <a href="?page=1&name={{ name }}&gender={{ gender }}" class="moveto"><<</a>
+        {% if page > 1 %}
+            <a href="?page={{ prev_page }}&name={{ name }}&gender={{ gender }}" class="moveto"><</a>
+        {% endif %}
+    {% else %}
+        <a href="?page=1" class="moveto"><<</a>
+        {% if page > 1 %}
+            <a href="?page={{ prev_page }}" class="moveto"><</a>
+        {% endif %}
+    {% endif %}
+
+    <!-- 중간에 있는 페이지들 -->
+    {% for page_num in range(real_start, real_end + 1) %}
+        {% if name or gender %}
+            {% if page == page_num %}
+                <a href="?page={{ page_num }}&name={{ name }}&gender={{ gender }}" class="movebutton active">{{ page_num }}</a>
+            {% else %}
+                <a href="?page={{ page_num }}&name={{ name }}&gender={{ gender }}" class="movebutton">{{ page_num }}</a>
+            {% endif %}
+        {% else %}
+            {% if page == page_num %}
+                <a href="?page={{ page_num }}" class="movebutton active">{{ page_num }}</a>
+            {% else %}
+                <a href="?page={{ page_num }}" class="movebutton">{{ page_num }}</a>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+
+    <!-- 첫 페이지에만 마지막 페이지 보여주기 -->
+    {% if page == 1 and total_pages > real_end %}
+        <span class="dots">...</span>
+        {% if name or gender %}
+            {% if page == total_pages %}
+                <a href="?page={{ total_pages }}&name={{ name }}&gender={{ gender }}" class="movebutton active">{{ total_pages }}</a>
+            {% else %}
+                <a href="?page={{ total_pages }}&name={{ name }}&gender={{ gender }}" class="movebutton">{{ total_pages }}</a>
+            {% endif %}
+        {% else %}
+            {% if page == total_pages %}
+                <a href="?page={{ total_pages }}" class="movebutton active">{{ total_pages }}</a>
+            {% else %}
+                <a href="?page={{ total_pages }}" class="movebutton">{{ total_pages }}</a>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+
+
+    <!-- Next 와 >> -->
+    {% if name or gender %}
+        {% if page < total_pages %}
+            <a href="?page={{ next_page }}&name={{ name }}&gender={{ gender }}" class="moveto">></a>
+        {% endif %}
+        <a href="?page={{ total_pages }}&name={{ name }}&gender={{ gender }}" class="moveto">>></a>
+    {% else %}
+        {% if page < total_pages %}
+            <a href="?page={{ next_page }}" class="moveto">></a>
+        {% endif %}
+        <a href="?page={{ total_pages }}" class="moveto">>></a>
+    {% endif %}
+</div>
