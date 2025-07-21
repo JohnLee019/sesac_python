@@ -1,0 +1,8 @@
+<ul>
+    <li><a href="/" class="{% if request.path == '/' %}active{% endif %}">User</a></li>
+    <!-- *user안에 고객정보를 들어가면 위에 user 고정이 풀림* -->
+    <li><a href="/orders" class="{% if request.path == '/orders' %}active{% endif %}">Order</a></li>
+    <li><a href="/orderItems" class="{% if request.path == '/orderItems' %}active{% endif %}">Order Item</a></li>
+    <li><a href="/items" class="{% if request.path == '/items' %}active{% endif %}">Item</a></li>
+    <li><a href="/stores" class="{% if request.path == '/stores' %}active{% endif %}">Store</a></li>
+</ul>
