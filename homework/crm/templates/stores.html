@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='web.css')}}">
+</head>
+<body>
+    {% include "components/listbar.html" %}
+    <form id="listbar">
+        가게 이름: <input type="Text" id="name" name="storename" placeholder="상점 이름 입력" value="{{ name }}">
+        시 선택: 
+        <select id="options" name="area">
+            <option value="" {% if area == "" %}selected{% endif %}>도시 선택</option>
+            <option value="서울" {% if area == "서울" %}selected{% endif %}>서울</option>
+            <option value="부산" {% if area == "부산" %}selected{% endif %}>부산</option>
+            <option value="인천" {% if area == "인천" %}selected{% endif %}>인천</option>
+            <option value="광주" {% if area == "광주" %}selected{% endif %}>광주</option>
+            <option value="대구" {% if area == "대구" %}selected{% endif %}>대구</option>
+        </select>
+        구 선택:
+        <select id="options" name="district">
+            <option value="" {% if area == "" %}selected{% endif %}>구 선택</option>
+            <option value="강남구" {% if district == "강남구" %}selected{% endif %}>강남구</option>
+            <option value="강서구" {% if district == "강서구" %}selected{% endif %}>강서구</option>
+            <option value="남구" {% if district == "남구" %}selected{% endif %}>남구</option>
+            <option value="서구" {% if district == "서구" %}selected{% endif %}>서구</option>
+            <option value="중구" {% if district == "중구" %}selected{% endif %}>중구</option>
+        </select>
+        <button type="submit" id="button">Submit</button>
+    </form>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Address</th>
+        </tr>
+        {% for s in stores %}
+        <tr>
+            <td><a href="/store_detail?id= {{ s.Id }}" style="text-decoration: none; color: rgb(74, 74, 248);">{{ s.Id }}</a></td>
+            <td>{{ s.Name }}</td>
+            <td>{{ s.Type }}</td>
+            <td>{{ s.Address }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+    {% include "components/pagination.html" %}
+</body>
+</html>
