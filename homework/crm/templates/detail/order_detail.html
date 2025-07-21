@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='web.css')}}">
+</head>
+<body>
+    {% include "components/listbar.html" %}
+    상품 주문 정보
+    <table>
+        <tr>
+            <td>ID</td>
+            <td>Order At</td>
+            <td>Store ID</td>
+            <td>User ID</td>
+        </tr>
+        {% for o in order_detail%}
+        <tr>
+            <td>{{o.Id}}</td>
+            <td>{{o.OrderAt}}</td>
+            <td><a href="/store_detail?id={{ o.StoreId }}" style="text-decoration: none; color: rgb(74, 74, 248);">{{o.StoreId}}</a></td>
+            <td><a href="/user_detail?id={{ o.UserId }}" style="text-decoration: none; color: rgb(74, 74, 248);">{{o.UserId}}</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='web.css')}}">
+</head>
+<body>
+    {% include "components/listbar.html" %}
+    고객정보
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Age</th>
+            <th>Birthday</th>
+        </tr>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.Name }}</td>
+            <td>{{ user.Gender }}</td>
+            <td>{{ user.Age }}</td>
+            <td>{{ user.Birthdate }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    주문 정보 
+    <table>
+        <tr>
+            <td>Order ID</td>
+            <td>Purchased Date</td>
+            <td>Purchased Location</td>
+        </tr>
+        {% for p in purchase %}
+        <tr>
+            <td>
+                <a href="/orderitem_detail?id= {{ p.Id }}" style="text-decoration:none; color: rgb(74, 74, 248)">{{ p.Id }}</a>
+            </td>
+            <td>{{ p.OrderAt }}</td>
+            <td><a href="/store_detail?id= {{p.StoreId}}" style="text-decoration:none; color: rgb(74, 74, 248)">{{ p.StoreId }}</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
