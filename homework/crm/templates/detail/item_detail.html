@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='web.css')}}">
+</head>
+<body>
+    {% include "components/listbar.html" %}
+    상품 정보
+    <table>
+        <tr>
+            <td>Name</td>
+            <td>Unit Price</td>
+        </tr>
+        {% for i in item%}
+        <tr>
+            <td>{{i.Name}}</td>
+            <td>{{i.UnitPrice}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    월간 매출액
+    <table>
+        <tr>
+            <td>Month</td>
+            <td>Total Revenue</td>
+            <td>Item Count</td>
+        </tr>
+         {% for i in monthly_count%}
+        <tr>
+            <td>{{i[0]}}</td>
+            <td>{{i[1]}}</td>
+            <td>{{i[2]}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
