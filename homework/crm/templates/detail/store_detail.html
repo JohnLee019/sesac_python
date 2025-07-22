@@ -31,11 +31,11 @@
             <th>판매 건수</th>
             <th>총 매출액</th>
         </tr>
-    {% for row in monthly_data %}
+    {% for m in monthly_data %}
     <tr>
-        <td>{{ row['time'] }}</td>
-        <td>{{ row['total'] }}</td>
-        <td>{{ row['count'] }}</td>
+        <td>{{ m['time'] }}</td>
+        <td>{{ m['total'] }}</td>
+        <td>{{ m['count'] }}</td>
     </tr>
     {% endfor %}
     </table>
@@ -47,7 +47,13 @@
             <th>Name</th>
             <th>Frequency</th>
         </tr>
-        
+        {% for r in regular_customers %}
+        <tr>
+            <td>{{ r['Id'] }}</td>
+            <td>{{ r['Name'] }}</td>
+            <td>{{ r['Count'] }}</td>
+        </tr>
+        {% endfor %}
     </table>
 </body>
 </html>

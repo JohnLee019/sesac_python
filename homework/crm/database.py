@@ -279,7 +279,6 @@ def get_store_monthly_count(store_id):
     return results
 
 def get_monthly_sales(store_id):
-    store_id = store_id.strip()
     conn = connect_db()
     cur = conn.cursor()
 
@@ -296,7 +295,30 @@ def get_monthly_sales(store_id):
         GROUP BY time
         ORDER BY time ASC;
     ''', (store_id,))
-    monthly_sales = cur.fetchall()
+
+    users = cur.fetchall()
     conn.close()
-    return monthly_sales
+    return users
+
+def get_regular_customers_per_store(store_id):
+    conn = connect_db()
+    cur = conn.cursor()
+
+    cur.execute('''
+        SELECT 
+            users.Id AS Id,
+            users.Name AS Name,
+            COUNT(*) AS Count
+        FROM orders
+        JOIN users ON orders.UserId = users.Id
+        JOIN stores ON stores.Id = orders.StoreId
+        WHERE stores.Id = ?
+        GROUP BY users.Id
+        HAVING COUNT(*) >= 2
+        ORDER BY Count DESC;
+        ''', (store_id,))
+
+    users = cur.fetchall()
+    conn.close()
+    return users
     #------------------------------
