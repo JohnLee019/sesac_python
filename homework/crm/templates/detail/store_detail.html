@@ -27,10 +27,27 @@
     월간 매출액
     <table>
         <tr>
-            <td>month</td>
-            <td>revenue</td>
-            <td>count</td>
+            <th>월</th>
+            <th>판매 건수</th>
+            <th>총 매출액</th>
         </tr>
+    {% for row in monthly_data %}
+    <tr>
+        <td>{{ row['time'] }}</td>
+        <td>{{ row['total'] }}</td>
+        <td>{{ row['count'] }}</td>
+    </tr>
+    {% endfor %}
+    </table>
+    <br>
+    단골 고객
+    <table>
+        <tr>
+            <th>User ID</th>
+            <th>Name</th>
+            <th>Frequency</th>
+        </tr>
+        
     </table>
 </body>
 </html>

@@ -190,8 +190,11 @@ def get_item_monthly_count(id, unit_price):
         last_day_number = calendar.monthrange(2023, num)[1]
         last_day = f"2023-{num:02d}-{last_day_number} 23:59:59"
 
-        cursor.execute("SELECT COUNT(*) FROM orders JOIN order_items ON orders.Id = order_items.OrderId JOIN items ON items.Id = order_items.ItemId WHERE orders.OrderAt BETWEEN ? AND ? AND items.Id = ?", (first_day, last_day, id))
-        
+        cursor.execute('''SELECT COUNT(*) FROM orders 
+                       JOIN order_items ON orders.Id = order_items.OrderId 
+                       JOIN items ON items.Id = order_items.ItemId 
+                       WHERE orders.OrderAt BETWEEN ? AND ? AND items.Id = ?'''
+                       , (first_day, last_day, id))
         count = cursor.fetchone()[0]
         revenue = unit_price * count
         total.append([f"2023-{num:02d}", revenue, count])
@@ -251,4 +254,49 @@ def get_stores_by_id(id):
     conn.close()
     users = [dict(r) for r in users]
     return users
-    #-----------------------------
+
+def get_store_monthly_count(store_id):
+    conn = connect_db()
+    cursor = conn.cursor()
+    results = []
+
+    for month in range(1, 13):
+        first_day = f"2023-{month:02d}-01 00:00:00"
+        last_day_number = calendar.monthrange(2023, month)[1]
+        last_day = f"2023-{month:02d}-{last_day_number} 23:59:59"
+
+        cursor.execute("""
+            SELECT COUNT(*) 
+            FROM order_items oi
+            JOIN orders o ON oi.OrderId = o.Id
+            WHERE o.StoreId = ? AND o.OrderAt BETWEEN ? AND ?
+        """, (store_id, first_day, last_day))
+
+        count = cursor.fetchone()[0]
+        results.append([f"2023-{month:02d}", count])
+
+    conn.close()
+    return results
+
+def get_monthly_sales(store_id):
+    store_id = store_id.strip()
+    conn = connect_db()
+    cur = conn.cursor()
+
+    cur.execute('''
+        SELECT 
+            strftime('%Y-%m', orders.OrderAt) AS time,
+            SUM(items.UnitPrice) AS total,
+            COUNT(*) AS count
+        FROM stores
+        JOIN orders ON stores.Id = orders.StoreId
+        JOIN order_items ON orders.Id = order_items.OrderId
+        JOIN items ON order_items.ItemId = items.Id
+        WHERE stores.Id = ?
+        GROUP BY time
+        ORDER BY time ASC;
+    ''', (store_id,))
+    monthly_sales = cur.fetchall()
+    conn.close()
+    return monthly_sales
+    #------------------------------
