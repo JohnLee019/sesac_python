@@ -10,4 +10,6 @@ def order_detail():
     unit_price = int(item[0]['UnitPrice'])
     monthly_count = db.get_item_monthly_count(item_id, unit_price)
     print(monthly_count)
+
+    
     return render_template('detail/item_detail.html', item=item, monthly_count=monthly_count)

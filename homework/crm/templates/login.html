@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>애니메이션 로그인</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: antiquewhite;
+      font-family: sans-serif;
+    }
+
+    .container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    /* Welcome 화면 */
+    .welcome-half {
+      position: absolute;
+      top: 0;
+      left: 0vw;
+      width: 50vw;
+      height: 100vh;
+      background-color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: slideRight 2s forwards;
+      z-index: 2;
+    }
+
+    @keyframes slideRight {
+      to {
+        left: 50vw;
+      }
+    }
+
+    .welcome-text {
+      text-align: center;
+      font-size: 40px;
+      font-weight: bold;
+    }
+
+    .waving {
+      width: 60px;
+      height: 60px;
+    }
+
+    /* 로그인 화면 */
+    .login-half {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50vw;
+      height: 100vh;
+      background-color: mistyrose;
+      display: flex;
+      justify-content: center;
+      align-items: start;
+      padding-top: 5vh;
+      padding-bottom: 5vh;
+      overflow-y: auto;
+      opacity: 0;
+      animation: fadeIn 1s ease forwards;
+      animation-delay: 2s;
+      z-index: 1;
+      align-items: flex-start;
+      padding-top: 0;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    .login-box {
+      width: 90%;
+      max-width: 500px;
+      min-height: 80%;
+      padding: 5% 5% 6% 5%;
+      border-radius: 15px;
+      background-color: rgb(249, 222, 226);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      margin-bottom: 2vh;
+      margin-top: 0;
+    }
+
+    .Login {
+      font-size: 32px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .email-label {
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .email {
+      width: 100%;
+      padding: 1em;
+      font-size: 16px;
+      border-radius: 10px;
+      border: 1px solid gray;
+    }
+
+    .loginButton {
+      width: 100%;
+      padding: 1em;
+      font-size: 18px;
+      font-weight: bold;
+      background-color: rgb(254, 168, 183);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .loginButton:hover {
+      background-color: rgb(251, 130, 151);
+    }
+
+    .Google {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: white;
+      border: 1px solid black;
+      border-radius: 10px;
+      height: 3em;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .image {
+      width: 2em;
+      height: 2em;
+      margin-right: 1em;
+    }
+
+    .signup {
+      color: blue;
+      margin-left: 10px;
+    }
+
+    .SignUp {
+      margin-top: 2vh;
+      text-align: center;
+    }
+
+    .forgot {
+      color: blue;
+      text-align: center;
+      display: block;
+    }
+
+    /* 스크롤바 없애기 (선택사항) */
+    .login-half::-webkit-scrollbar {
+      width: 0;
+      background: transparent;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    
+    <!-- 로그인 영역 -->
+    <div class="login-half">
+      <div class="login-box">
+        <h2 class="Login">Login</h2>
+
+        <label class="email-label" for="email">Email Address</label>
+        <input class="email" type="text" id="email" placeholder="Email Address">
+
+        <label class="email-label" for="password">Password</label>
+        <input class="email" type="password" id="password" placeholder="Password">
+
+        <p><input type="checkbox"> Remember for 30 days</p>
+
+        <a href="/users">
+          <button class="loginButton">Login</button>
+        </a>
+
+        <p style="text-align:center;">
+          ------------------------------------ or ------------------------------------
+        </p>
+
+        <div class="Google">
+          <img src="{{ url_for('static', filename='image/google.png') }}" class="image" alt="Google" />
+          Sign in with Google
+        </div>
+
+        <p class="SignUp">
+          Don't have an account?
+          <a href="#" class="signup">Sign Up</a>
+        </p>
+        <p><a href="#" class="forgot">Forgot your Password?</a></p>
+      </div>
+    </div>
+
+    <!-- Welcome 영역 -->
+    <div class="welcome-half">
+      <div class="welcome-text">
+        <img src="{{ url_for('static', filename='image/waving.png') }}" class="waving" />
+        Welcome Back!!!
+        <img src="{{ url_for('static', filename='image/waving.png') }}" class="waving" />
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
