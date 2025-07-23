@@ -77,6 +77,48 @@ def get_user_order_detail(id):
     conn.close()
     users = [dict(r) for r in users]
     return users
+
+def get_often_visited_stores_by_user(user_id):
+    conn = connect_db()
+    cursor = conn.cursor()
+    cursor.execute('''
+            SELECT 
+                stores.Name AS Name,
+                COUNT(*) AS Count
+            FROM orders
+            JOIN users ON users.Id = orders.UserId
+            JOIN stores ON stores.Id = orders.StoreId
+            WHERE users.id = ?  
+            GROUP BY stores.Name
+            ORDER BY Count DESC
+            LIMIT 5;
+                   ''', (user_id,))
+    users = cursor.fetchall()
+    conn.close()
+    users = [dict(r) for r in users]
+    return users
+
+def get_often_bought_by_user(user_id):
+    conn = connect_db()
+    cursor = conn.cursor()
+    cursor.execute('''
+            SELECT 
+                items.Name AS Name,
+                COUNT(*) AS Count
+            FROM orders
+            JOIN order_items ON orders.Id = order_items.OrderId            
+            JOIN items ON items.Id = order_items.ItemId
+            WHERE orders.UserId = ?
+            GROUP BY items.Name
+            HAVING COUNT(*) >= 2
+            ORDER BY Count DESC
+            LIMIT 5;
+                   ''', (user_id,))
+    users = cursor.fetchall()
+    conn.close()
+    users = [dict(r) for r in users]
+    return users
+
     # ---------------------------------------------
 
     # orders db

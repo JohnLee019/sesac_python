@@ -43,5 +43,19 @@
         </tr>
         {% endfor %}
     </table>
+    <br>
+    자주 방문한 매장 Top 5
+    <ul id="top5">
+    {% for o in often_visited_list %}
+        <li>{{o['Name']}}  ({{o['Count']}}번 방문)</li>
+    {% endfor %}
+    </ul>
+    <br>
+    자주 주문한 상품명 Top 5
+    <ul id="top5">
+    {% for o in often_bought_items %}
+        <li>{{o['Name']}}  ({{o['Count']}}번 방문)</li>
+    {% endfor %}
+    </ul>
 </body>
 </html>
