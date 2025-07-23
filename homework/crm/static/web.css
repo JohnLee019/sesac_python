@@ -79,3 +79,16 @@ th, td {
     padding: 0 6px;
     color: gray;
 }
+#top5 {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin: 0;
+    background-color: transparent;  
+    border: none;
+    display: block;
+}
+
+#top5 li {
+    padding: 5px 5px;
+    white-space: nowrap; 
+}
