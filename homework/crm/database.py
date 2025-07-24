@@ -205,14 +205,75 @@ def get_items_per_page(page, count):
     users = [dict(r) for r in users]
     return users
 
-def get_item_type(type):
+def get_item_type(type, min, max):
     conn = connect_db()
     cursor = conn.cursor()
-    cursor.execute('SELECT * FROM items WHERE LOWER(Type) = LOWER(?)',(type,))
-    users = cursor.fetchall()
+
+    if type and min  and max :
+        cursor.execute(
+            "SELECT * FROM items WHERE LOWER(Type) = LOWER(?) AND CAST(UnitPrice AS INTEGER) BETWEEN ? AND ?", (type, min, max)
+        )
+    elif min and max:
+        cursor.execute(
+            "SELECT * FROM items WHERE CAST(UnitPrice AS INTEGER) BETWEEN ? AND ?", (min, max)
+        )
+    elif type:
+        cursor.execute(
+            "SELECT * FROM items WHERE LOWER(Type) = LOWER(?)",(type,)
+        )
+    elif type and min:
+        cursor.execute(
+            "SELECT * FROM items WHERE LOWER(Type) = LOWER(?) AND CAST(UnitPrice AS INTEGER) >= ?", (type, min)
+        )
+    elif type and max:
+        cursor.execute(
+            "SELECT * FROM items WHERE LOWER(Type) = LOWER(?) AND CAST(UnitPrice AS INTEGER) <= ?", (type, max)
+        )
+    elif min:
+        cursor.execute(
+            "SELECT * FROM items WHERE CAST(UnitPrice AS INTEGER) >= ?", (min,)
+        )
+    elif max:
+        cursor.execute(
+            "SELECT * FROM items WHERE CAST(UnitPrice AS INTEGER) <= ?", (max,)
+        )
+    else:
+        cursor.execute("SELECT * FROM items")
+    # if type and min is not None and max is not None:
+    #     cursor.execute(
+    #         "SELECT * FROM items WHERE LOWER(Type) = LOWER(?) AND CAST(UnitPrice AS INTEGER) BETWEEN ? AND ?", (type, min, max)
+    #     )
+    # elif not type and min is not None and max is not None:
+    #     cursor.execute(
+    #         "SELECT * FROM items WHERE CAST(UnitPrice AS INTEGER) BETWEEN ? AND ?", (min, max)
+    #     )
+    # elif type and min is None and max is None:
+    #     cursor.execute(
+    #         "SELECT * FROM items WHERE LOWER(Type) = LOWER(?)",(type,)
+    #     )
+    # elif type and min is not None and max is None:
+    #     cursor.execute(
+    #         "SELECT * FROM items WHERE LOWER(Type) = LOWER(?) AND CAST(UnitPrice AS INTEGER) >= ?", (type, min)
+    #     )
+    # elif type and min is None and max is not None:
+    #     cursor.execute(
+    #         "SELECT * FROM items WHERE LOWER(Type) = LOWER(?) AND CAST(UnitPrice AS INTEGER) <= ?", (type, max)
+    #     )
+    # elif not type and min is not None and max is None:
+    #     cursor.execute(
+    #         "SELECT * FROM items WHERE CAST(UnitPrice AS INTEGER) >= ?", (min,)
+    #     )
+    # elif not type and min is None and max is not None:
+    #     cursor.execute(
+    #         "SELECT * FROM items WHERE CAST(UnitPrice AS INTEGER) <= ?", (max,)
+    #     )
+    # else:
+    #     cursor.execute("SELECT * FROM items")
+    items = cursor.fetchall()
     conn.close()
-    users = [dict(r) for r in users]
-    return users
+    items = [dict(r) for r in items]
+    return items
+
 
 def get_item_by_id(id):
     conn = connect_db()

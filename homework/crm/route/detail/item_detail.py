@@ -8,8 +8,11 @@ def order_detail():
     item_id = request.args.get('id')
     item = db.get_item_by_id(item_id)
     unit_price = int(item[0]['UnitPrice'])
+    print(unit_price)
     monthly_count = db.get_item_monthly_count(item_id, unit_price)
-    print(monthly_count)
-
-    
-    return render_template('detail/item_detail.html', item=item, monthly_count=monthly_count)
+    # print(monthly_count)
+    result = []
+    for i in monthly_count:
+        result.append(i[1])
+    print(result)
+    return render_template('detail/item_detail.html', item=item, monthly_count=monthly_count, result=result)
