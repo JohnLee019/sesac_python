@@ -9,6 +9,24 @@
 <body>
     {% include "components/listbar.html" %}
     <form id="listbar">
+        <select id="options" name="min">
+            <option value="" {% if min == "" %}selected{% endif %}>최소 금액</option>
+            <option value="2000" {% if min == "2000" %}selected{% endif %}>2000원</option>
+            <option value="3000" {% if min == "3000" %}selected{% endif %}>3000원</option>
+            <option value="4000" {% if min == "4000" %}selected{% endif %}>4000원</option>
+            <option value="5000" {% if min == "5000" %}selected{% endif %}>5000원</option>
+            <option value="6000" {% if min == "6000" %}selected{% endif %}>6000원</option>
+            <option value="7000" {% if min == "7000" %}selected{% endif %}>7000원</option>
+        </select>
+        <select id="options" name="max">
+            <option value="" {% if max == "" %}selected{% endif %}>최대 금액</option>
+            <option value="2000" {% if max == "2000" %}selected{% endif %}>2000원</option>
+            <option value="3000" {% if max == "3000" %}selected{% endif %}>3000원</option>
+            <option value="4000" {% if max == "4000" %}selected{% endif %}>4000원</option>
+            <option value="5000" {% if max == "5000" %}selected{% endif %}>5000원</option>
+            <option value="6000" {% if max == "6000" %}selected{% endif %}>6000원</option>
+            <option value="7000" {% if max == "7000" %}selected{% endif %}>7000원</option>
+        </select>
         <select id="options" name="type">
             <option value="" {% if type == "" %}selected{% endif %}>종류 선택</option>
             <option value="Coffee" {% if type == "Coffee" %}selected{% endif %}>커피</option>
