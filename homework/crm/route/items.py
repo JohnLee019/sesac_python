@@ -9,16 +9,30 @@ def items():
     page = request.args.get('page', default=1, type=int)
     items_per_page = 20 
     type = request.args.get('type', "").strip()
-    print(type)
-    if type:
-        item_type = db.get_item_type(type)
-        print(item_type)
-        total_pages = math.ceil(len(item_type) / items_per_page)
-        start = (page - 1) * items_per_page
-        end = start + items_per_page
-        items = item_type[start: end]
-        return render_template('items.html', items=items, total_pages=total_pages, page=page, type=type)
-    items = db.get_items_per_page(page, items_per_page)
-    items_count = db.get_items()
-    total_pages = math.ceil(len(items_count) / items_per_page)
-    return render_template('items.html', items=items, total_pages=total_pages, page=page)
+    min_str = request.args.get('min', "").strip()
+    max_str = request.args.get('max', "").strip()
+    print(min)
+
+    if min_str != "":
+        min_price = int(min_str)
+    else:
+        min_price = None
+
+    if max_str != "":
+        max_price = int(max_str)
+    else:
+        max_price = None
+
+    # print(min)
+    # print(max)
+    # print(type)
+    item_type = db.get_item_type(type, min_price, max_price)
+    # print(item_type)
+    total_pages = math.ceil(len(item_type) / items_per_page)
+    start = (page - 1) * items_per_page
+    end = start + items_per_page
+    items = item_type[start: end]
+    min_price = str(min_price)
+    max_price = str(max_price)
+    return render_template('items.html', items=items,
+    total_pages=total_pages, page=page, type=type, min=min_price, max=max_price)
