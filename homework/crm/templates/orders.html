@@ -20,8 +20,8 @@
         <tr>
             <td><a href="/orderitem_detail?id={{ order.Id}}" style="text-decoration: none; color: rgb(74, 74, 248);">{{ order.Id }}</a></td>
             <td>{{ order.OrderAt }}</td>
-            <td>{{ order.StoreId }}</td>
-            <td>{{ order.UserId }}</td>
+            <td><a href="/store_detail?id={{ order.StoreId}}" style="text-decoration: none; color: rgb(74, 74, 248);">{{ order.StoreId }}</a></td>
+            <td><a href="/user_detail?id={{ order.UserId}}" style="text-decoration: none; color: rgb(74, 74, 248);">{{ order.UserId }}</a></td>
         </tr>
         {% endfor %}
     </table>
