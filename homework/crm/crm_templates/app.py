@@ -1,6 +1,4 @@
 from flask import Flask, render_template, request
-import database as db
-import math
 from route.orders import orders_bp
 from route.order_items import order_items_bp
 from route.items import items_bp
@@ -31,4 +29,4 @@ def login():
     return render_template('login.html')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')

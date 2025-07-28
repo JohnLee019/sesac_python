@@ -1,7 +1,6 @@
 <ul>
     <li><a href="/users" class="{% if request.path.startswith('/user') %}active{% endif %}">User</a></li>
-    <!-- *user안에 고객정보를 들어가면 위에 user 고정이 풀림* -->
-    <li><a href="/orders" class="{% if request.path.startswith('/order') %}active{% endif %}">Order</a></li>
+    <li><a href="/orders" class="{% if request.path.startswith('/orders') %}active{% endif %}">Order</a></li>
     <li><a href="/orderItems" class="{% if request.path.startswith('/orderItems') %}active{% endif %}">Order Item</a></li>
     <li><a href="/items" class="{% if request.path.startswith('/item') %}active{% endif %}">Item</a></li>
     <li><a href="/stores" class="{% if request.path.startswith('/store') %}active{% endif %}">Store</a></li>

@@ -18,7 +18,7 @@
         {% for item in order_items %}
         <tr>
             <td>{{ item.Id }}</td>
-            <td><a href="/order_detail?id={{item.OrderId}}" style="text-decoration:none; color: rgb(74, 74, 248)">{{ item.OrderId }}</a></td>
+            <td><a href="/orders_detail?id={{item.OrderId}}" style="text-decoration:none; color: rgb(74, 74, 248)">{{ item.OrderId }}</a></td>
             <td><a href="/item_detail?id={{item.ItemId}}" style="text-decoration:none; color: rgb(74, 74, 248)">{{ item.ItemId }}</a></td>
         </tr>
         {% endfor %}

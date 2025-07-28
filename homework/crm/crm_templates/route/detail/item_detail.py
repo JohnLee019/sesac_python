@@ -10,7 +10,6 @@ def order_detail():
     unit_price = int(item[0]['UnitPrice'])
     print(unit_price)
     monthly_count = db.get_item_monthly_count(item_id, unit_price)
-    # print(monthly_count)
     result = []
     for i in monthly_count:
         result.append(i[1])

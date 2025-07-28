@@ -54,6 +54,8 @@ def get_users_by_name_gender(name, gender):
         cursor.execute('SELECT * FROM users WHERE Name LIKE ?', ('%' + name + '%',))
     elif gender:
         cursor.execute('SELECT * FROM users WHERE LOWER(Gender) = LOWER(?)',(gender,))
+    else:
+        cursor.execute('SELECT * FROM users')
     users = cursor.fetchall()
     conn.close()
     users = [dict(r) for r in users]
@@ -239,36 +241,6 @@ def get_item_type(type, min, max):
         )
     else:
         cursor.execute("SELECT * FROM items")
-    # if type and min is not None and max is not None:
-    #     cursor.execute(
-    #         "SELECT * FROM items WHERE LOWER(Type) = LOWER(?) AND CAST(UnitPrice AS INTEGER) BETWEEN ? AND ?", (type, min, max)
-    #     )
-    # elif not type and min is not None and max is not None:
-    #     cursor.execute(
-    #         "SELECT * FROM items WHERE CAST(UnitPrice AS INTEGER) BETWEEN ? AND ?", (min, max)
-    #     )
-    # elif type and min is None and max is None:
-    #     cursor.execute(
-    #         "SELECT * FROM items WHERE LOWER(Type) = LOWER(?)",(type,)
-    #     )
-    # elif type and min is not None and max is None:
-    #     cursor.execute(
-    #         "SELECT * FROM items WHERE LOWER(Type) = LOWER(?) AND CAST(UnitPrice AS INTEGER) >= ?", (type, min)
-    #     )
-    # elif type and min is None and max is not None:
-    #     cursor.execute(
-    #         "SELECT * FROM items WHERE LOWER(Type) = LOWER(?) AND CAST(UnitPrice AS INTEGER) <= ?", (type, max)
-    #     )
-    # elif not type and min is not None and max is None:
-    #     cursor.execute(
-    #         "SELECT * FROM items WHERE CAST(UnitPrice AS INTEGER) >= ?", (min,)
-    #     )
-    # elif not type and min is None and max is not None:
-    #     cursor.execute(
-    #         "SELECT * FROM items WHERE CAST(UnitPrice AS INTEGER) <= ?", (max,)
-    #     )
-    # else:
-    #     cursor.execute("SELECT * FROM items")
     items = cursor.fetchall()
     conn.close()
     items = [dict(r) for r in items]
@@ -342,6 +314,8 @@ def get_store_name_area(name, area, district, full_area):
         cursor.execute('SELECT * FROM stores WHERE LOWER(Address) LIKE LOWER(?)',(area + '%',))
     elif district:
         cursor.execute('SELECT * FROM stores WHERE LOWER(Address) LIKE LOWER(?)',('%' + district + '%',))
+    else:
+        cursor.execute('SELECT * FROM stores')
 
     users = cursor.fetchall()
     conn.close()

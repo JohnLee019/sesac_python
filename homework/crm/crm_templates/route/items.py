@@ -11,7 +11,6 @@ def items():
     type = request.args.get('type', "").strip()
     min_str = request.args.get('min', "").strip()
     max_str = request.args.get('max', "").strip()
-    print(min)
 
     if min_str != "":
         min_price = int(min_str)
@@ -23,11 +22,8 @@ def items():
     else:
         max_price = None
 
-    # print(min)
-    # print(max)
-    # print(type)
+
     item_type = db.get_item_type(type, min_price, max_price)
-    # print(item_type)
     total_pages = math.ceil(len(item_type) / items_per_page)
     start = (page - 1) * items_per_page
     end = start + items_per_page
