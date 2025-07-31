@@ -95,5 +95,26 @@ def logout():
     session.pop('user', None)  # user가 없으면 KeyError 가 날 수 있음.. 그래서 없을때 None 반환..
     return redirect(url_for('home'))
 
+@app.route('/profile', methods=['POST', 'GET'])
+def profile():
+    if request.method == 'POST':
+        user = session.get('user')
+        id = request.form.get('id')
+        name = request.form.get('name')
+        password = request.form.get('password')
+        user = next((u for u in users if u['id'] == user['id']), None)
+        if user:
+            user['id'] = id
+            user['name'] = name
+            user['pw'] = password
+
+            session['user'] = user
+
+            return redirect(url_for('login'))
+        else:
+            return '사용자를 찾을 수 없습니다'
+    else:
+        return render_template('profile.html')
+    
 if __name__ == "__main__":
     app.run(debug=True)

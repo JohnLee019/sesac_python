@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}사용자 페이지{% endblock %}
+{% block content %}
+<H1>사용자 정보 페이지</H1>
+<form method="POST">
+    새로운 ID: <input type="text" name="id">
+    새로운 이름: <input type="text" name ='name'>
+    새로운 비밀번호: <input type="password" name="password">
+    <input type="submit" value="로그인">
+</form>
+{% endblock %}

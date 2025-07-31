@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, session
 from route.orders import orders_bp
 from route.order_items import order_items_bp
 from route.items import items_bp
@@ -23,6 +23,10 @@ app.register_blueprint(order_detail_bp)
 app.register_blueprint(store_detail_bp)
 app.register_blueprint(item_detail_bp)
 app.register_blueprint(users_bp)
+
+users = [
+    {'id': '이홍민', 'pw': 'password'}
+]
 
 @app.route('/')
 def login():
