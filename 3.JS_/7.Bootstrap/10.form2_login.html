@@ -1,66 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <!-- bootstrap css 추가 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>회원가입 폼</title>
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css"
+    rel="stylesheet"
+  />
+  <style>
+    /* 관심분야 에러 표시용 */
+    #interests.border-danger { border: 1px solid #dc3545 !important; }
+    #interestsFeedback { display: none; color: #dc3545; font-size: .875em; margin-top: .25rem; }
+  </style>
 </head>
 <body>
-    <div class="container my-4">
-        <h2>회원가입 폼</h2>
-        <!-- 사용자명(3-10 글자로 입력하시오) -->
-        <form id="validationForm" novalidate> <!--html의 form의 기본 type check 기능 비활성화-->
-            <div class="mb-3">
-                <label for="username" class="form-label">사용자명</label>
-                <div class="input-group">
-                    <span class="input-group-text"><i class="bi bi person"></i></span>
-                    <input type="text" class="form-control" id="username" placeholder="3-10 글자로 입력하세요" required>
-                    <div class="invalid-feedback">
-                        사용자명은 3글자 이상 10글자 이하로 입력해야 합니다.
-                    </div>
-                </div>
-            </div>
+  <div class="container my-4">
+    <h2>회원가입</h2>
+    <form id="validationForm" novalidate>
+      <!-- 1. 사용자명 -->
+      <div class="mb-3">
+        <label for="username" class="form-label">사용자명</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="bi bi-person"></i></span>
+          <input
+            type="text"
+            class="form-control"
+            id="username"
+            placeholder="3~10글자로 입력하세요."
+            required
+          />
+          <div class="invalid-feedback">
+            사용자명은 3자 이상 10자 이하로 입력해야 합니다.
+          </div>
+        </div>
+      </div>
 
-        <!-- 비밀번호 (대소문자, 숫자/특수문자를 포함하여 8자 이상)-->
-            <div class="mb-3">
+      <!-- 2. 비밀번호 -->
+      <div class="mb-3">
+        <label for="password" class="form-label">비밀번호</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class=""></i></span>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            placeholder="비밀번호를 입력하세요."
+            required
+          />
+          <div class="invalid-feedback">
+            비밀번호는 대·소문자, 숫자, 특수문자 중 최소 3가지 조합해 8자 이상이어야 합니다.
+          </div>
+        </div>
+      </div>
 
-            </div>
-        <!-- 이름 (1-10글자로 입력)-->
-            <div class="mb-3">
+      <!-- 3. 이름 -->
+      <div class="mb-3">
+        <label for="name" class="form-label">이름</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class=""></i></span>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            placeholder="1~10글자로 입력하세요."
+            required
+          />
+          <div class="invalid-feedback">
+            이름은 1자 이상 10자 이하로 입력해야 합니다.
+          </div>
+        </div>
+      </div>
 
-            </div>
-        <!-- 생년월일 -->
-            <div class="mb-3">
+      <!-- 4. 생년월일 -->
+      <div class="mb-3">
+        <label for="birth" class="form-label">생년월일</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class=""></i></span>
+          <input
+            type="date"
+            class="form-control"
+            id="birth"
+            required
+          />
+          <div class="invalid-feedback">
+            생년월일을 선택해야 합니다.
+          </div>
+        </div>
+      </div>
 
-            </div>
-        <!-- 관심분야 (체크 박스로 최소 1개, 최대 4개) -->
-            <div class="mb-3">
+      <!-- 5. 관심분야 -->
+      <div class="mb-3">
+        <label class="form-label">관심분야 <small>(최소 1개, 최대 3개 선택)</small></label>
+        <div id="interests" class="p-3 rounded">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="interest1" name="interest" value="1">
+            <label class="form-check-label" for="interest1">관심 분야 1</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="interest2" name="interest" value="2">
+            <label class="form-check-label" for="interest2">관심 분야 2</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="interest3" name="interest" value="3">
+            <label class="form-check-label" for="interest3">관심 분야 3</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="interest4" name="interest" value="4">
+            <label class="form-check-label" for="interest4">관심 분야 4</label>
+          </div>
+        </div>
+        <div id="interestsFeedback">최소 1개, 최대 3개 선택해야 합니다.</div>
+      </div>
 
-            </div>
-        <!-- 제출 -->
-        </form>
-    </div>
+      <button type="submit" class="btn btn-primary">제출</button>
+    </form>
+  </div>
 
-    <script>
-        //위에 DOM요소들을 가져와서... 검증하는 코드 구현하시오
-        const form = document.getElementById('validatonForm');
+  <script>
+    const form = document.getElementById('validationForm');
+    const username = document.getElementById('username');
+    const password = document.getElementById('password');
+    const nameInput = document.getElementById('name');
+    const birth = document.getElementById('birth');
+    const interests = document.getElementById('interests');
+    const interestChecks = document.querySelectorAll('input[name="interest"]');
+    const interestsFeedback = document.getElementById('interestsFeedback');
 
-        document.getElementById('usernmae').addEventListener('blur', validateUsername);
+    username.addEventListener('blur', validateUsername);
+    password.addEventListener('blur', validatePassword);
+    nameInput.addEventListener('blur', validateName);
+    birth.addEventListener('change', validateBirth);
+    interestChecks.forEach(chk => chk.addEventListener('change', validateInterests));
 
-        //사용자 이름 검증
-        function validateUsername() {
-            const username = document.getElementById('username');
-            if (username.value.length < 3 || username.value.length > 10){
-                username.classList.add('is-invalid');
-            } else {
-                username.classList.add('is-valid');
-            }            
-        }
-    </script>
+    form.addEventListener('submit', e => {
+      validateUsername();
+      validatePassword();
+      validateName();
+      validateBirth();
+      validateInterests();
 
-    <!-- bootsrap js 추가 -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+      if (
+        form.querySelectorAll('.is-invalid').length > 0 ||
+        interests.classList.contains('border-danger')
+      ) {
+        e.preventDefault();
+        e.stopPropagation();
+      } else {
+        e.preventDefault();
+        alert('✅ 제출되었습니다!');
+      }
+    });
+
+    function validateUsername() {
+      const v = username.value.trim().length;
+      setState(username, v >=3 && v <=10);
+    }
+
+    function validatePassword() {
+      const val = password.value;
+      const checks = [/[a-z]/, /[A-Z]/, /\d/, /[\W_]/];
+      const passed = checks.filter(rx => rx.test(val)).length;
+      setState(password, val.length >=8 && passed >=3);
+    }
+
+    function validateName() {
+      const v = nameInput.value.trim().length;
+      setState(nameInput, v >=1 && v <=10);
+    }
+
+    function validateBirth() {
+      setState(birth, birth.value !== '');
+    }
+
+    function validateInterests() {
+      const cnt = [...interestChecks].filter(chk => chk.checked).length;
+      if (cnt >=1 && cnt <=3) {
+        interests.classList.remove('border-danger');
+        interestsFeedback.style.display = 'none';
+      } else {
+        interests.classList.add('border-danger');
+        interestsFeedback.style.display = 'block';
+      }
+    }
+
+    function setState(el, valid) {
+      if (valid) {
+        el.classList.remove('is-invalid');
+        el.classList.add('is-valid');
+      } else {
+        el.classList.remove('is-valid');
+        el.classList.add('is-invalid');
+      }
+    }
+  </script>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
