@@ -3,6 +3,7 @@ from flask import Flask, render_template, request, redirect, url_for, session, f
 app = Flask(__name__)
 app.secret_key = 'abcd1234'
 
+# 예제용 사용자 리스트
 users = [
     {'name': 'MyName', 'id': 'user', 'pw': 'password'},
 ]
@@ -14,31 +15,30 @@ def home():
 @app.route('/login', methods=["GET", "POST"])
 def login():
     if request.method == 'POST':
-        user = request.form.get('id')
-        password = request.form.get('password')
-        
-        user = next((u for u in users if u["id"] == user and u["pw"] == password), None)
+        user_id = request.form.get('id')
+        password = request.form.get('pw')  
+        user = next(
+            (u for u in users if u["id"] == user_id and u["pw"] == password),
+            None
+        )
         if user:
             session['user'] = user
             flash("로그인에 성공했습니다.", "success")
             return redirect(url_for('user'))
-        
         flash("ID/PW가 일치하지 않습니다.", "danger")
         return redirect(url_for('home'))
-    else:
-        if 'user' in session:
-            flash("이미 로그인 된 사용자 입니다.", "warning")
-            return redirect(url_for('user'))
-        
-        return redirect(url_for('home'))
+
+    if 'user' in session:
+        flash("이미 로그인된 사용자입니다.", "warning")
+        return redirect(url_for('user'))
+    return redirect(url_for('home'))
 
 @app.route('/user')
 def user():
     if 'user' in session:
         user = session['user']
         return render_template('user.html', name=user['name'])
-
-    flash("비정상 접근입니다. 로그인 부터 하고 오세요.", "success")
+    flash("비정상 접근입니다. 로그인부터 해주세요.", "danger")
     return redirect(url_for('home'))
 
 @app.route("/logout")
@@ -47,8 +47,7 @@ def logout():
         session.pop('user', None)
         flash("정상적으로 로그아웃 되었습니다.", "success")
     else:
-        flash('이미 로그아웃 되었습니다.', "warning")
-        
+        flash("이미 로그아웃된 상태입니다.", "warning")
     return redirect(url_for('home'))
 
 if __name__ == "__main__":
