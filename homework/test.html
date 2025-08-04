@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>이메일 인증 (API 없이 폼 제출)</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 24px; }
+    h2 { margin-bottom: 8px; }
+    form { margin: 16px 0; }
+    label { display: block; margin: 8px 0 4px; }
+    input { padding: 8px; width: 280px; max-width: 100%; }
+    button { padding: 8px 12px; margin-top: 8px; }
+    .msg { margin-top: 16px; }
+    .ok { color: #0a7c2f; font-weight: 700; }
+    .error { color: #b00020; font-weight: 700; }
+    .hint { color:#555; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <h2>회원가입이라고 치고 이메일만 검증하기 (폼 제출 방식)</h2>
+
+  <!-- 메시지 출력 -->
+  <div class="msg">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="{{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+  </div>
+
+  <!-- 1) 인증코드 전송 -->
+  <form action="{{ url_for('send_code') }}" method="post" novalidate>
+    <label for="email">이메일</label>
+    <input type="email" id="email" name="email" placeholder="you@example.com"
+           value="{{ saved.email if saved else '' }}" required />
+    <button type="submit">인증코드 전송</button>
+    <div class="hint">전송 누르면 서버에서 코드 생성 → 세션 저장 → (예시) 콘솔에 출력</div>
+  </form>
+
+  <!-- 2) 인증코드 확인 -->
+  <form action="{{ url_for('verify_code') }}" method="post" novalidate>
+    <label for="email2">이메일</label>
+    <input type="email" id="email2" name="email" placeholder="you@example.com"
+           value="{{ saved.email if saved else '' }}" required />
+
+    <label for="code">인증코드</label>
+    <input type="text" id="code" name="code" placeholder="6자리 코드" inputmode="numeric" maxlength="6" required />
+
+    <button type="submit">인증코드 확인</button>
+  </form>
+
+  {% if saved %}
+    <div class="hint">
+      (개발 편의용) 현재 세션: {{ saved.email }} / 만료시각: {{ saved.exp }}
+    </div>
+  {% endif %}
+</body>
+</html>
