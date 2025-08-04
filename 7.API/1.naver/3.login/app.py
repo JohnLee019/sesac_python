@@ -2,10 +2,12 @@ from flask import Flask, render_template, redirect, request, url_for, session
 from dotenv import load_dotenv
 import os
 import requests
+import database as db
 
 load_dotenv()
 
 # TODO: sqlite 와 연동해서.. 사용자 정보 저장하기..
+DB_FILENAME = 'users.db'
 
 app = Flask(__name__)
 app.secret_key = os.getenv("SESSION_SECRET")
@@ -50,13 +52,17 @@ def naver_callback():
     profile = requests.get('https://openapi.naver.com/v1/nid/me', headers=headers).json()
     
     print('최종적으로받아온사용자정보: ', profile)
-
+    user = profile['response']['id']
+    user_exist = db.check_user(user)
     # TODO: 우리의 DB(sqlite3) 에 이 사용자가 있는지 확인하고, 있으면 그 정보 가져와서 세션에 저장
     #       해당 사용자가 없으면? 새롭게 DB에 삽입.
     #       이걸 더 확장하고 싶으면?? 사용자가 없으면, 그때 회원가입 페이지로 보내서.. "주소", "전화번호" 등 추가정보를 입력받게해서 DB에 저장한다.
-    
-    # 해당 정보를 내 세션에 저장하기
-    session['user'] = profile['response']
+
+    if user_exist:
+        # 해당 정보를 내 세션에 저장하기
+        session['user'] = profile['response']
+    else:
+        db.create_user(profile['response']['id'], profile['response'].get('nickname', ''))
     
     return redirect(url_for('index'))
 
@@ -64,6 +70,17 @@ def naver_callback():
 def logout():
     session.clear() # 이 사용자의 세션 모두 삭제
     return redirect(url_for('index'))
+
+@app.route('/edit_profile', methods=['GET', 'POST'])
+def edit():
+    if request.method == 'POST':
+        username = session['user']['id']
+        password = request.form.get('password')
+        name = request.form.get('name')
+        db.update_user(username, password, name)
+        return redirect(url_for('index'))
+
+    return render_template('edit_profile.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
