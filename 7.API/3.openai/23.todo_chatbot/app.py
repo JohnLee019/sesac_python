@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+
 from routes.chatbot_routes import chatbot_bp
 from routes.todo_routes import todo_bp
 
@@ -10,7 +11,6 @@ app.register_blueprint(chatbot_bp)
 @app.route('/')
 def home():
     return app.send_static_file('index.html')
-
 
 # 미션1. 투두의 CRUD 완성
 # 미션2. 챗봇을 프런트에 추가하고 /api/chat 을 추가할 차례가 되었는데...
