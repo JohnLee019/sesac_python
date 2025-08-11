@@ -12,6 +12,7 @@ __pycache__/
 *.sqlite3
 chroma_db/
 DATA/
+
 # 민감정보파일
 .env
 
