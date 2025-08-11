@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>투두 앱</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #fff;
+            margin: 5px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h1>투두 리스트</h1>
+    <input type="text" id="taskInput" placeholder="할 일을 입력하세요">
+    <button onclick="addTask()">추가</button>
+    <ul id="taskList"></ul>
+
+    <script>
+        function addTask() {
+            var input = document.getElementById("taskInput");
+            var task = input.value;
+            if (task === '') {
+                alert("할 일을 입력하세요!");
+                return;
+            }
+
+            var li = document.createElement("li");
+            li.textContent = task;
+            document.getElementById("taskList").appendChild(li);
+            input.value = '';
+        }
+    </script>
+</body>
+</html>
